@@ -47,19 +47,19 @@ public class Eleccion_partida extends javax.swing.JPanel {
             }
         });
 
-        partidalocal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        partidalocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         partidalocal.setForeground(new java.awt.Color(255, 255, 255));
         partidalocal.setText("PARTIDA LOCAL");
         partidalocal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         partidalocal.setContentAreaFilled(false);
 
-        partida_com.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        partida_com.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         partida_com.setForeground(new java.awt.Color(255, 255, 255));
         partida_com.setText("PARTIDA VS COM");
         partida_com.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         partida_com.setContentAreaFilled(false);
 
-        partidaonline.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        partidaonline.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         partidaonline.setForeground(new java.awt.Color(255, 255, 255));
         partidaonline.setText("PARTIDA ONLINE");
         partidaonline.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));

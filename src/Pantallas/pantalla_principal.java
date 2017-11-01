@@ -63,9 +63,9 @@ public class pantalla_principal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void iniciar_partidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciar_partidaActionPerformed
-     Eleccion_partida x= new Eleccion_partida();
-     x.setVisible(true);
-     pantalla_principal.this.setVisible(false);
+        Frame2 x= new Frame2();
+        x.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_iniciar_partidaActionPerformed
 
 

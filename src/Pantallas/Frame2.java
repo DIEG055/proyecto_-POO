@@ -6,28 +6,27 @@
 package Pantallas;
 
 import javax.swing.JFrame;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+
 /**
  *
  * @author juanm
  */
-public class Frame extends JFrame {
-        public Frame() {
+public class Frame2 extends JFrame {
+        public Frame2() {
 
         initUI();
     }
 
     private void initUI() {
-        add(new pantalla_principal());
+        add(new Eleccion_partida());
         setSize(730, 480);
-        setTitle("pantalla1");
+        setTitle("pantalla2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }    
     
     public static void main(String[] args) {
-        Frame ex = new Frame();
+        Frame2 ex = new Frame2();
         ex.setVisible(true);
        
     }
