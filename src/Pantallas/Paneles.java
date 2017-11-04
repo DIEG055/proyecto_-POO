@@ -42,6 +42,10 @@ public class Paneles  extends JPanel implements ActionListener{
         
         p3.REGRESAR.addActionListener(this);
         p3.add(p3.REGRESAR);
+        p3.horizontal.addActionListener(this);
+        p3.vertical.addActionListener(this);
+        p3.add(p3.vertical);
+        p3.add(p3.horizontal);
     }
    
    
@@ -67,6 +71,10 @@ public class Paneles  extends JPanel implements ActionListener{
         if(e.getSource().equals(p2.vsCOM)){
             remove(p2);
             add(p3);
+        }
+        if(e.getSource().equals(p3.REGRESAR)){
+            remove(p3);
+            add(p2);
         }
         repaint();
         revalidate();

@@ -45,9 +45,11 @@ public class Ubicacion_Barcos extends javax.swing.JPanel implements MouseListene
     private void initComponents() {
 
         jSpinner1 = new javax.swing.JSpinner();
+        jComboBox2 = new javax.swing.JComboBox<>();
         regresar = new javax.swing.JButton();
-        verticall = new javax.swing.JRadioButton();
-        horizontal = new javax.swing.JRadioButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         regresar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         regresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -55,59 +57,36 @@ public class Ubicacion_Barcos extends javax.swing.JPanel implements MouseListene
         regresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         regresar.setContentAreaFilled(false);
 
-        verticall.setText("vertical");
-        verticall.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verticallActionPerformed(evt);
-            }
-        });
-
-        horizontal.setText("horizontal");
-        horizontal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                horizontalActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(horizontal)
-                    .addComponent(verticall)
-                    .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(611, Short.MAX_VALUE))
+                .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(216, 216, 216)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(verticall)
-                .addGap(18, 18, 18)
-                .addComponent(horizontal)
-                .addContainerGap(310, Short.MAX_VALUE))
+                .addGap(253, 253, 253)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(150, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
         
-    private void verticallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verticallActionPerformed
-        this.orientacion=true;
-    }//GEN-LAST:event_verticallActionPerformed
-
-    private void horizontalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horizontalActionPerformed
-        this.orientacion=false;
-    }//GEN-LAST:event_horizontalActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton horizontal;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton regresar;
-    private javax.swing.JRadioButton verticall;
     // End of variables declaration//GEN-END:variables
   
     
