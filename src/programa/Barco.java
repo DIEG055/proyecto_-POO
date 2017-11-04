@@ -39,4 +39,10 @@ public class Barco {
         public int cabezaY(){
         return this.coordenadas[0].getY();
     }
+
+    public Coordenada[] getCoordenadas() {
+        return coordenadas;
+    }
+        
+        
 }
