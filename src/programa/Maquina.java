@@ -72,6 +72,9 @@ public class Maquina {
         return is;
     }
 
+    
+    
+    
     //Pruebas pendejas
     public void MostarBarcos(Barco[] barcos) {
         for (int i = 0; i < 10; i++) {
