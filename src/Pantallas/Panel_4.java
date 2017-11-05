@@ -9,14 +9,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Shape;
+import java.awt.Point;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import programa.Coordenada;
+import programa.Cuadro;
 import programa.Jugador;
 import programa.Maquina;
+import programa.Tablero;
 
 /**
  *
@@ -32,15 +35,6 @@ public class Panel_4 extends JPanel implements MouseListener {
     int xref1,xref2,yref1,yref2,tam_cuadrado;
     Coordenada c1,c2;
 
-    public Panel_4(int xref1, int xref2, int yref1, int yref2, int tam_cuadros) {
-        this.xref1 = xref1;
-        this.xref2 = xref2;
-        this.yref1 = yref1;
-        this.yref2 = yref2;
-        this.tam_cuadrado = tam_cuadros;
-        this.c1 = new Coordenada(xref1,yref1);
-        this.c2 = new Coordenada(xref2,yref2);
-    }
     
     
     
@@ -96,17 +90,36 @@ public class Panel_4 extends JPanel implements MouseListener {
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
                 c.drawRect(this.xref1+(i*this.tam_cuadrado),this.yref1+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado); 
+                
                 c.drawRect(this.xref2+(i*this.tam_cuadrado),this.yref2+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado);
+                if(modo){
+                    if(maquina.getTablero().getCuadrados()[i][j].isGolpeado()){
+                        Coordenada aux= maquina.getTablero().getCuadrados()[i][j].getCoordenada();
+                        if(maquina.getTablero().getCuadrados()[i][j].isPer_barco()){
+                            c.setColor(Color.BLUE);
+                        }else{
+                            c.setColor(Color.CYAN);
+                        }
+                        c.fillRect(aux.getX(),aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
+                    }
+                }else{
+                    if(jugador02.getTablero().getCuadrados()[i][j].isGolpeado()){
+                        Coordenada aux= jugador02.getTablero().getCuadrados()[i][j].getCoordenada();
+                        if(jugador02.getTablero().getCuadrados()[i][j].isPer_barco()){
+                            c.setColor(Color.BLUE);
+                        }else{
+                            c.setColor(Color.CYAN);
+                        }
+                        c.fillRect(aux.getX(),aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
+                    }
+                }
+                if(jugador01.getTablero().getCuadrados()[i][j].isGolpeado()){
+                    Coordenada aux= jugador01.getTablero().getCuadrados()[i][j].getCoordenada();
+                    c.setColor(Color.CYAN);
+                    c.fillRect(aux.getX(),aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
+                }
             }
-        }
-        
-        for (int i=0; i<10; i++){
-            for (int j=0; j<10; j++){
-            
-            }
-        }
-        
-        
+        } 
     }
        
     public Image loadImage(String imageName) {
@@ -115,25 +128,47 @@ public class Panel_4 extends JPanel implements MouseListener {
         return image;
     }
     
-    
+        public Coordenada golpe(Point p, Tablero tablero){
+        Coordenada cabeza= new Coordenada(0,0);
+        Cuadro[][] aux= tablero.getCuadrados();;    
+        for(int i=0;i<10;i++){
+            for(int j=0;j<10;j++){       
+                if(aux[i][j].getRectangulo().contains(p)){
+                    cabeza=aux[i][j].getCoordenada();
+                }
+            }
+        }
+        return cabeza;
+    }
     
     
     @Override
     public void mouseClicked(MouseEvent e) {
+        Point p= new Point();
+        Coordenada lugar_golpe= new Coordenada(0,0);
         if(estado){
             if(modo){
-                //Aqui usamos la informacion para detectar donde pulso el jugador
-                //Pintamos o modificamos donde el usuario jugo
+                p= e.getPoint();
+                lugar_golpe= golpe(p,maquina.getTablero());
+                repaint();
+            //listo    //Aqui usamos la informacion para detectar donde pulso el jugador
+            //listo    //Pintamos o modificamos donde el usuario jugo
                 //Modificamos el golpeado del cuadrado CAMILO
                 //Las vidas de los barcos, para saber si ya se acabo el juego o no CAMILO
 
                 //Hacemos que la maquina juegue
-                //Pintamos o modificamos donde la maquina jugo
+                
+         //Coordenada dada por la maquina       
+            
+            //listo    //Pintamos o modificamos donde la maquina jugo
                 //Modificamos el golpeado del cuadrado
                 //Las vidas de los barcos, para saber si ya se acabo el juego o no
             }//If modo
             else{
                 if(turno){
+                     p= e.getPoint();
+                lugar_golpe= golpe(p,jugador02.getTablero());
+                repaint();
                     //Aqui usamos la informacion para detectar donde pulso el jugador
                     //Pintamos o modificamos donde el usuario jugo
                     //Modificamos el golpeado del cuadrado
@@ -142,8 +177,11 @@ public class Panel_4 extends JPanel implements MouseListener {
                 }//IF TURNO
                 
                 else{
-                    //Aqui usamos la informacion para detectar donde pulso el jugador
-                    //Pintamos o modificamos donde el usuario jugo
+                     p= e.getPoint();
+                lugar_golpe= golpe(p,jugador01.getTablero());
+                repaint();
+                   //listo    //Aqui usamos la informacion para detectar donde pulso el jugador
+                    //listo   //Pintamos o modificamos donde el usuario jugo
                     //Modificamos el golpeado del cuadrado
                     //Las vidas de los barcos, para saber si ya se acabo el juego o no
                     //Cambiamos turno

@@ -26,9 +26,9 @@ import programa.Cuadro;
  *
  * @author juanm
  */
-public class Panel_3 extends JPanel implements MouseListener {
+public class Panel_3_1 extends JPanel implements MouseListener {
     
-    private  int xref=30;
+    private  int xref=380;
     private  int yref=100;
     private  int tam_cuadrado=30;
     private boolean orientacion= true;
@@ -43,13 +43,13 @@ public class Panel_3 extends JPanel implements MouseListener {
     
     JButton REGRESAR = new JButton("REGRESAR");
     JButton poner = new JButton("Poner barco");
-    JButton COMENZAR = new JButton("COMENZAR");
+    JButton COMENZAR = new JButton("JUGADOR 1");
     JRadioButton vertical = new JRadioButton("VERTICAL");
     JRadioButton horizontal = new JRadioButton("HORIZONTAL");
     ButtonGroup grupo1= new ButtonGroup();
     JLabel texto =new JLabel("SELECCIONE EL RECUADRO DONDE QUIERE UBICAR EL BARCO");
     
-    public Panel_3() {  
+    public Panel_3_1() {  
        t[0]=5;
        t[1]=4;
        t[2]=3;
@@ -179,7 +179,7 @@ public class Panel_3 extends JPanel implements MouseListener {
     public void poner(){
         Point c= new Point(x_aux,y_aux);
         if(tam<5){
-            tablero1.crear_barco(c, orientacion, t[this.tam]);  
+            tablero1.crear_barco(c, orientacion, t[this.tam]); 
             tam++;
         }
         this.prueba=false;
