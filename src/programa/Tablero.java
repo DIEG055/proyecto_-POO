@@ -84,25 +84,7 @@ public class Tablero {
             }
             this.barcos_creados ++;
             int q=0;
-            for(int j=0;j<10;j++){
-                for(int k=0;k<10;k++){
-                    if(this.cuadrados[j][k].isPer_barco()){
-                    System.out.print(1);
-                    q++;
-                    if(q%10==0){
-                        System.out.println();
-                    }
-                    }else{
-                        System.out.print(0);
-                        q++;
-                        if(q%10==0){
-                        System.out.println();
-                    }
-                    }
-                }
-            }
-        }
-        
+        }   
     }
     
     public boolean crear_barcovf(Point click,boolean orientacion, int tamano){
