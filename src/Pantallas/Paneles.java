@@ -22,7 +22,7 @@ import programa.Tablero;
  */
 public class Paneles  extends JPanel implements ActionListener{
 
-    private  int xref1=380;
+    private  int xref1=30;
     private  int yref1=100;
     private  int tam_cuadrado=30;
     private Coordenada ct1= new Coordenada(this.xref1,this.yref1);  
@@ -32,12 +32,12 @@ public class Paneles  extends JPanel implements ActionListener{
     Panel_2 p2 = new Panel_2(); 
     Panel_3 p3 = new Panel_3();
     Tablero tablero_local=p3.tablero1;
-    Panel_4 p4 = new Panel_4(xref1-350,xref1,yref1,yref1,tam_cuadrado); 
+    Panel_4 p4 = new Panel_4(xref1,xref1+350,yref1,yref1,tam_cuadrado); 
     
     
     public Paneles() {
         super( new BorderLayout ());
-        add(p4);
+        add(p1);
         
         p1.iniciar.addActionListener(this);
         p1.configuracion.addActionListener(this);
@@ -100,6 +100,7 @@ public class Paneles  extends JPanel implements ActionListener{
             if(p3.tablero1.getbarcos_creados()==5){
             remove(p3);
             add(p4);
+                System.out.println(this.tablero_local.getbarcos_creados());
         }
            
         }

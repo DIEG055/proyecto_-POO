@@ -28,7 +28,7 @@ import programa.Cuadro;
  */
 public class Panel_3 extends JPanel implements MouseListener {
     
-    private  int xref=370;
+    private  int xref=30;
     private  int yref=100;
     private  int tam_cuadrado=30;
     private boolean orientacion= true;
@@ -104,6 +104,7 @@ public class Panel_3 extends JPanel implements MouseListener {
         Graphics2D c = (Graphics2D) g; 
         c.setColor(Color.ORANGE);
         if(!(this.x_aux==0)){
+        try{
             for(int i=0;i<this.t[tam];i++){
                 if(orientacion){
                     c.fillRect(x_aux, y_aux+(i*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado);
@@ -111,6 +112,7 @@ public class Panel_3 extends JPanel implements MouseListener {
                     c.fillRect(x_aux+(i*this.tam_cuadrado), y_aux, this.tam_cuadrado, this.tam_cuadrado);
                 }
             }
+        }catch(ArrayIndexOutOfBoundsException e){}
         }
     }
     
@@ -188,7 +190,6 @@ public class Panel_3 extends JPanel implements MouseListener {
     
     public void poner(){
         Point c= new Point(x_aux,y_aux);
-        System.out.println("x"+x_aux+ " y"+y_aux+" vf "+this.orientacion);
         tablero1.crear_barco(c, orientacion, t[this.tam]);  
         if(tam<5){
             tam++;
