@@ -40,16 +40,10 @@ public class Paneles  extends JPanel implements ActionListener{
     
     //Creamos los jugadores en este caso, creamos la maquina y el jugador 
     //Tenemos que dar la coordenada de la ubicacion, y el tamaño de los cuadrados
-    Maquina cpu = new Maquina(new Coordenada(0, 0), 20);
+    Maquina cpu = new Maquina(new Coordenada(310, 100), 30);
     //Variable que me permita cambiar el nombre
-    Jugador jugador = new Jugador("Jugador 1", new Tablero(new Coordenada(30, 0 ), cpu.generarBarcos(20)));
+    Jugador jugador = new Jugador("Jugador 1", new Tablero(new Coordenada(0, 100 ), cpu.getFunciones().generarBarcos(30)));
     //Llamanos al panel a traves del contructor jugador vs cpu
-    
-    int x = jugador.getTablero().getUbicacionPanel().getX();
-    int yref11 = jugador.getTablero().getUbicacionPanel().getY();
-    int xref2 = cpu.getTablero().getUbicacionPanel().getX();
-    int yref2 = cpu.getTablero().getUbicacionPanel().getY();
-    
     Panel_4 p4 = new Panel_4(jugador, cpu); 
     
     //Panel_4 p4 = new Panel_4(xref1,xref1+350,yref1,yref1,tam_cuadrado); 

@@ -42,7 +42,19 @@ public class Tablero {
             }
         }
     }
-
+    
+    public void informarCuadradosBarcos(){
+        
+        for(Barco barco: barcos){
+            System.out.println(" TAMANO CUADRADOS:    "+tamanoCuadrados);
+            System.out.println(ubicacionPanel.getY() + "  " + ubicacionPanel.getX());
+            for(Coordenada coordenada: barco.getCoordenadas()){
+                System.out.println(coordenada.getY() + " " +  (coordenada.getY()-ubicacionPanel.getY())/tamanoCuadrados);
+                System.out.println(coordenada.getX() + " " +(coordenada.getX()-ubicacionPanel.getX())/tamanoCuadrados);
+                //cuadrados[(coordenada.getY()-ubicacionPanel.getY())/tamanoCuadrados][(coordenada.getX()-ubicacionPanel.getX())/tamanoCuadrados].setPer_barco(true);
+            }
+        }
+    }
     
     
     public boolean desocupado_total(Coordenada c, int tam, boolean b){

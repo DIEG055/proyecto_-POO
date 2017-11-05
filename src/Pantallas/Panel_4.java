@@ -78,12 +78,7 @@ public class Panel_4 extends JPanel implements MouseListener {
             }
         }
         
-        for(int i=0; i<10; i++){
-            for(int j=0; j<10; j++){
-//                //Tablero 2
-//                c.draw(this.maquina.getTablero().getCuadrados()[i][j].getRectangulo());
-            }
-        }
+        
     }
        
     public Image loadImage(String imageName) {
