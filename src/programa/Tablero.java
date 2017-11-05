@@ -28,7 +28,6 @@ public class Tablero {
     }
     
     public Tablero(Coordenada ubicacion, Barco[] barcos){
-        System.out.println("dkjscjb");
         this.cuadrados=new Cuadro[10][10];
         this.barcos= barcos;
         this.barcos_creados=5;
@@ -42,43 +41,8 @@ public class Tablero {
                 cuadrados[i][j]= new Cuadro(aux,tamanoCuadrados);
             }
         }
-        //this.informarCuadrosPertenece();
     }
-//    public void informarCuadrosPertenece(){
-//        for (Barco barco : barcos) {
-//            this.informarCuadrosPertenece(barco);
-//        }
-//    }
-//    
-//    public void informarCuadrosPertenece(Barco barco){
-////        Coordenada[] coordenadasAux = barco.getCoordenadas();
-////        for (Coordenada coordenada : coordenadasAux) {
-////            this.cuadrados[(coordenada.getY()-this.ubicacionPanel.getY())/this.tamanoCuadrados][(coordenada.getX()-this.ubicacionPanel.getX())/this.tamanoCuadrados].setPer_barco(true);
-////        }
-//    }
-//    
-//    
-//    public Coordenada[] cambiarCoordenadas(Coordenada[] coordenadasIniciales, int tamano){
-//        for (Coordenada coordenada : coordenadasIniciales) {
-//            coordenada= new Coordenada(((coordenada.getX()-this.ubicacionPanel.getX())/this.tamanoCuadrados), 
-//                                       ((coordenada.getY()-this.ubicacionPanel.getY())/this.tamanoCuadrados));
-//        }
-//        return coordenadasIniciales;
-//    }
-//
-//    public void actualizarBarcosVivos(){
-//        int barcosVivos=0;
-//        for(Barco barco: barcos){
-//            Coordenada[] coordenadasAux = this.cambiarCoordenadas(barco.getCoordenadas(), barco.getTamano());
-//            boolean aux = false;
-//            for (Coordenada coordenada : coordenadasAux) {
-//                if((cuadrados[coordenada.getY()][coordenada.getX()].isGolpeado())){}
-//                else{ aux= true;}
-//            }
-//            if(aux){ barcosVivos++;}
-//        } 
-//        this.barcosVivos= barcosVivos;
-//    }
+
     
     
     public boolean desocupado_total(Coordenada c, int tam, boolean b){

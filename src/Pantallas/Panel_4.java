@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Shape;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
@@ -46,13 +47,16 @@ public class Panel_4 extends JPanel implements MouseListener {
         this.maquina = maquina;
         this.turno= true;
         this.estado= true;
+        this.tam_cuadrado=jugador.getTablero().getTamanoCuadrados();
         
         this.c1 = jugador.getTablero().getUbicacionPanel();
         this.c2 = maquina.getTablero().getUbicacionPanel();
-        this.xref1 = this.c1.getX();
-        this.yref1 = this.c1.getY();
-        this.xref2 = this.c2.getX();
-        this.yref2 = this.c2.getY();
+        this.xref1 = jugador.getTablero().getUbicacionPanel().getX();
+        this.yref1 = jugador.getTablero().getUbicacionPanel().getY();
+        this.xref2 = maquina.getTablero().getUbicacionPanel().getX();
+        this.yref2 = maquina.getTablero().getUbicacionPanel().getY();
+        System.out.println(xref1 + " " + yref1 +  " " + xref2 + " " + yref2 + " tamano: " + tam_cuadrado);
+        
     }
     
         @Override
@@ -69,8 +73,15 @@ public class Panel_4 extends JPanel implements MouseListener {
         c.setColor(Color.WHITE);
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
-                c.drawRect(xref1+(i*this.tam_cuadrado),yref1+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado); 
-                c.drawRect(xref2+(i*this.tam_cuadrado),yref2+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado);
+                c.drawRect(this.xref1+(i*this.tam_cuadrado),this.yref1+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado); 
+                c.drawRect(this.xref2+(i*this.tam_cuadrado),this.yref2+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado);
+            }
+        }
+        
+        for(int i=0; i<10; i++){
+            for(int j=0; j<10; j++){
+//                //Tablero 2
+//                c.draw(this.maquina.getTablero().getCuadrados()[i][j].getRectangulo());
             }
         }
     }
