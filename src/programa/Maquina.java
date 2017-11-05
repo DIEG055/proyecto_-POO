@@ -10,7 +10,19 @@ package programa;
  * @author Asus-Pc
  */
 public class Maquina {
+    private String nombre;
+    private Tablero tablero;
+    
+    public Maquina(Coordenada ubicacion, int tamano){
+        this.nombre= "CPU";
+        this.tablero = new Tablero(ubicacion, this.generarBarcos(tamano));
+    }
 
+    public String getNombre() {return nombre;}
+
+    public Tablero getTablero() {return tablero;}
+    
+    
     public Barco[] generarBarcos(int tamano) {
         Barco[] barcosMaquina = new Barco[6];
         barcosMaquina[0] = this.generarBarco(barcosMaquina, 5, 0, tamano);
@@ -18,7 +30,6 @@ public class Maquina {
         barcosMaquina[2] = this.generarBarco(barcosMaquina, 3, 2, tamano);
         barcosMaquina[3] = this.generarBarco(barcosMaquina, 3, 3, tamano);
         barcosMaquina[4] = this.generarBarco(barcosMaquina, 2, 4, tamano);
-        barcosMaquina[5] = this.generarBarco(barcosMaquina, 2, 5, tamano);
 
         return barcosMaquina;
     }
@@ -92,5 +103,7 @@ public class Maquina {
             System.out.println("");
        }
     }
+    
+    
     
 }

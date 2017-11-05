@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.*;
 import programa.Coordenada;
 import programa.Tablero;
+import programa.Maquina;
+import programa.Jugador;
 
 /**
  *
@@ -32,7 +34,17 @@ public class Paneles  extends JPanel implements ActionListener{
     Panel_2 p2 = new Panel_2(); 
     Panel_3 p3 = new Panel_3();
     Tablero tablero_local=p3.tablero1;
-    Panel_4 p4 = new Panel_4(xref1,xref1+350,yref1,yref1,tam_cuadrado); 
+    
+    
+    
+    
+    //Creamos los jugadores en este caso, creamos la maquina y el jugador 
+    //Tenemos que dar la coordenada de la ubicacion, y el tamaño de los cuadrados
+    Maquina cpu = new Maquina(new Coordenada(0, 0), 1);
+    //Variable que me permita cambiar el nombre
+    Jugador jugador = new Jugador("Jugador 1", tablero_local);
+    //Llamanos al panel a traves del contructor jugador vs cpu
+    Panel_4 p4 = new Panel_4(jugador, cpu); 
     
     
     public Paneles() {

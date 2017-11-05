@@ -14,13 +14,19 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import programa.Coordenada;
+import programa.Jugador;
+import programa.Maquina;
 
 /**
  *
  * @author juanm
  */
 public class Panel_4 extends JPanel implements MouseListener {
-
+    private Jugador jugador01;
+    private Jugador jugador02;
+    private Maquina maquina;
+    private boolean turno; // true para jugador 1, false para jugador2 o la maquina
+    private boolean estado; //True si aun se puede jugar, false si no se puede jugar.
     int xref1,xref2,yref1,yref2,tam_cuadrado;
     Coordenada c1,c2;
 
@@ -32,6 +38,21 @@ public class Panel_4 extends JPanel implements MouseListener {
         this.tam_cuadrado = tam_cuadros;
         this.c1 = new Coordenada(xref1,yref1);
         this.c2 = new Coordenada(xref2,yref2);
+    }
+    
+    public Panel_4(Jugador jugador, Maquina maquina){
+        this.jugador01 = jugador;
+        this.jugador02 = null;
+        this.maquina = maquina;
+        this.turno= true;
+        this.estado= true;
+        
+        this.c1 = jugador.getTablero().getUbicacionPanel();
+        this.c2 = maquina.getTablero().getUbicacionPanel();
+        this.xref1 = this.c1.getX();
+        this.yref1 = this.c1.getY();
+        this.xref2 = this.c2.getX();
+        this.yref2 = this.c2.getY();
     }
     
         @Override

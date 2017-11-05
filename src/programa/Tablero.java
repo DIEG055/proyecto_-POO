@@ -6,35 +6,89 @@ import java.awt.Rectangle;
 public class Tablero {
     private Cuadro[][] cuadrados;
     private Barco[] barcos; 
-    private int barcos_creados=0;
+    private int barcos_creados;
     private Coordenada ubicacionPanel; 
     private int tamanoCuadrados;
-
+    private int barcosVivos;
     
     public Tablero(Coordenada ubicacion, int tamanoCuadrados){
+        this.cuadrados=new Cuadro[10][10];
+        this.barcos= new Barco[5];
+        this.barcos_creados=0;
         this.ubicacionPanel=ubicacion;
         this.tamanoCuadrados=tamanoCuadrados;
-        this.cuadrados=new Cuadro[10][10];
+        this.barcosVivos=5;
         for(int i=0; i<10; i++){
             for(int j=0; j<10; j++){
-                
                 Coordenada aux= new Coordenada(ubicacion.getX()+(tamanoCuadrados*j),
                                                ubicacion.getY()+(tamanoCuadrados*i));
                 cuadrados[i][j]= new Cuadro(aux,tamanoCuadrados);
             }
         }
-        this.barcos= new Barco[5];
     }
-
-
+    
+    public Tablero(Coordenada ubicacion, Barco[] barcos){
+        System.out.println("dkjscjb");
+        this.cuadrados=new Cuadro[10][10];
+        this.barcos= barcos;
+        this.barcos_creados=5;
+        this.ubicacionPanel=ubicacion;
+        this.tamanoCuadrados=barcos[0].getTamanoCuadrados();
+        this.barcos_creados = 5;
+        for(int i=0; i<10; i++){
+            for(int j=0; j<10; j++){
+                Coordenada aux= new Coordenada(ubicacion.getX()+(tamanoCuadrados*j),
+                                               ubicacion.getY()+(tamanoCuadrados*i));
+                cuadrados[i][j]= new Cuadro(aux,tamanoCuadrados);
+            }
+        }
+        //this.informarCuadrosPertenece();
+    }
+//    public void informarCuadrosPertenece(){
+//        for (Barco barco : barcos) {
+//            this.informarCuadrosPertenece(barco);
+//        }
+//    }
+//    
+//    public void informarCuadrosPertenece(Barco barco){
+////        Coordenada[] coordenadasAux = barco.getCoordenadas();
+////        for (Coordenada coordenada : coordenadasAux) {
+////            this.cuadrados[(coordenada.getY()-this.ubicacionPanel.getY())/this.tamanoCuadrados][(coordenada.getX()-this.ubicacionPanel.getX())/this.tamanoCuadrados].setPer_barco(true);
+////        }
+//    }
+//    
+//    
+//    public Coordenada[] cambiarCoordenadas(Coordenada[] coordenadasIniciales, int tamano){
+//        for (Coordenada coordenada : coordenadasIniciales) {
+//            coordenada= new Coordenada(((coordenada.getX()-this.ubicacionPanel.getX())/this.tamanoCuadrados), 
+//                                       ((coordenada.getY()-this.ubicacionPanel.getY())/this.tamanoCuadrados));
+//        }
+//        return coordenadasIniciales;
+//    }
+//
+//    public void actualizarBarcosVivos(){
+//        int barcosVivos=0;
+//        for(Barco barco: barcos){
+//            Coordenada[] coordenadasAux = this.cambiarCoordenadas(barco.getCoordenadas(), barco.getTamano());
+//            boolean aux = false;
+//            for (Coordenada coordenada : coordenadasAux) {
+//                if((cuadrados[coordenada.getY()][coordenada.getX()].isGolpeado())){}
+//                else{ aux= true;}
+//            }
+//            if(aux){ barcosVivos++;}
+//        } 
+//        this.barcosVivos= barcosVivos;
+//    }
+    
+    
     public boolean desocupado_total(Coordenada c, int tam, boolean b){
-      boolean ac=true;
+        boolean ac=true;
         int h=(c.getX()-ubicacionPanel.getX())/tamanoCuadrados;
-       int v=(c.getY()-ubicacionPanel.getY())/tamanoCuadrados;
-       try{ 
-       for(int i=0;i<tam;i++){
-            if(b){
-              ac&= !cuadrados[v+i][h].isPer_barco();
+        int v=(c.getY()-ubicacionPanel.getY())/tamanoCuadrados;
+        try{ 
+            for(int i=0;i<tam;i++){
+                if(b){
+                ac&= !cuadrados[v+i][h].isPer_barco();
             }else{
               ac&= !cuadrados[v][h+i].isPer_barco();
             }
@@ -43,6 +97,9 @@ public class Tablero {
        }
     return ac;
     }
+    
+    
+    
     public boolean cabe_barco(Coordenada cabeza,int tam, boolean orientacion){
         int t=this.tamanoCuadrados;
         boolean ac=false;
@@ -105,6 +162,18 @@ public class Tablero {
     }
     public Barco getbarco(int x){
     return barcos[x];
+    }
+
+    public int getBarcos_creados() {
+        return barcos_creados;
+    }
+
+    public Coordenada getUbicacionPanel() {
+        return ubicacionPanel;
+    }
+
+    public int getBarcosVivos() {
+        return barcosVivos;
     }
     
     

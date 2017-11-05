@@ -8,9 +8,10 @@ package programa;
 public class MainPruebas {
 
     public static void main(String[] args) {
-        Maquina miMaquina = new Maquina();
-       miMaquina.MostarBarcos(miMaquina.generarBarcos(1));
-
+      //  Maquina miMaquina = new Maquina(new Coordenada(0, 0), 1);
+//       miMaquina.MostarBarcos(miMaquina.generarBarcos(1));
+         
+        //Tablero miTablero = 
     }
 
 }

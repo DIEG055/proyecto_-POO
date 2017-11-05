@@ -4,11 +4,13 @@ public class Barco {
     private int vidas;
     private boolean orientacion; // 0 horizontal y 1 vertical 
     private int tamano;
+    private int tamanoCuadrados;
     
     public Barco(Coordenada cabeza_barco, boolean orientacion, int tamano,int tam_barcos){
         this.vidas=tamano;
         this.orientacion=orientacion;
         this.tamano=tamano;
+        this.tamanoCuadrados =tam_barcos;
         this.coordenadas= new Coordenada[tamano];
         for(int i =0; i<tamano; i++){
             if(orientacion){
@@ -20,29 +22,20 @@ public class Barco {
         }
     }
 
-    public int getVidas() {
-        return vidas;
-    }
+    public int getVidas() {return vidas;}
 
-    public boolean getOrientacion() {
-        return orientacion;
-    }
+    public boolean getOrientacion() {return orientacion;}
 
+    public int getTamano() {return tamano;}
 
-    public int getTamano() {
-        return tamano;
-    }
+    public int cabezaX(){return this.coordenadas[0].getX();}
+    
+    public int cabezaY(){return this.coordenadas[0].getY();}
 
-    public int cabezaX(){
-        return this.coordenadas[0].getX();
-    }
-        public int cabezaY(){
-        return this.coordenadas[0].getY();
-    }
+    public Coordenada[] getCoordenadas() {return coordenadas;}
 
-    public Coordenada[] getCoordenadas() {
-        return coordenadas;
-    }
-        
+    public int getTamanoCuadrados() {return tamanoCuadrados;}
+    
+    
         
 }
