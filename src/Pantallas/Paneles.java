@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.*;
+import programa.Coordenada;
+import programa.Tablero;
 
 /**
  *
@@ -20,13 +22,22 @@ import javax.swing.*;
  */
 public class Paneles  extends JPanel implements ActionListener{
 
-   panel_1 p1= new panel_1();
-   Panel_2 p2 = new Panel_2(); 
-   Panel_3 p3 = new Panel_3();
-   Panel_4 p4 = new Panel_4();
+    private  int xref1=380;
+    private  int yref1=100;
+    private  int tam_cuadrado=30;
+    private Coordenada ct1= new Coordenada(this.xref1,this.yref1);  
+    
+    
+    panel_1 p1= new panel_1();
+    Panel_2 p2 = new Panel_2(); 
+    Panel_3 p3 = new Panel_3();
+    Tablero tablero_local=p3.tablero1;
+    Panel_4 p4 = new Panel_4(xref1-350,xref1,yref1,yref1,tam_cuadrado); 
+    
+    
     public Paneles() {
         super( new BorderLayout ());
-        add(p1);
+        add(p4);
         
         p1.iniciar.addActionListener(this);
         p1.configuracion.addActionListener(this);

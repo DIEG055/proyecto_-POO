@@ -17,10 +17,11 @@ import javax.swing.JPanel;
  */
 public class Panel_2 extends JPanel {
     
-     JButton vsCOM = new JButton("PARTIDA VS COM");
-     JButton VSLOCAL = new JButton("PARTIDA LOCAL");
-     JButton ONLINE = new JButton("PARTIDA ONLINE");
-     JButton REGRESAR = new JButton("REGRESAR");
+    JButton vsCOM = new JButton("PARTIDA VS COM");
+    JButton VSLOCAL = new JButton("PARTIDA LOCAL");
+    JButton ONLINE = new JButton("PARTIDA ONLINE");
+    JButton REGRESAR = new JButton("REGRESAR");
+    
     public Panel_2() {
         
         REGRESAR.setSize(200, 100);
@@ -52,10 +53,6 @@ public class Panel_2 extends JPanel {
         ONLINE.setContentAreaFilled(false);
         
     }
-      
-    
-    
-    
     
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
