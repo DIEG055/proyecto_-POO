@@ -39,6 +39,8 @@ public class Tablero {
                 Coordenada aux= new Coordenada(ubicacion.getX()+(tamanoCuadrados*j),
                                                ubicacion.getY()+(tamanoCuadrados*i));
                 cuadrados[i][j]= new Cuadro(aux,tamanoCuadrados);
+                
+                
             }
         }
     }
@@ -46,17 +48,11 @@ public class Tablero {
     public void informarCuadradosBarcos(){
         
         for(Barco barco: barcos){
-            System.out.println(" TAMANO CUADRADOS:    "+tamanoCuadrados);
-            System.out.println(ubicacionPanel.getY() + "  " + ubicacionPanel.getX());
+//            System.out.println(" TAMANO CUADRADOS   vvvvvb :    "+ barco.getTamanoCuadrados());
+//            System.out.println(ubicacionPanel.getY() + "  " + ubicacionPanel.getX());
+//            for(Coordenada coordenada: barco.getCoordenadas()){}
             for(Coordenada coordenada: barco.getCoordenadas()){
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println(coordenada.getY());
-                System.out.println(coordenada.getX());
-                System.out.println(coordenada.getY() + " " +  (coordenada.getY()-ubicacionPanel.getY())/tamanoCuadrados);
-                System.out.println(coordenada.getX() + " " +(coordenada.getX()-ubicacionPanel.getX())/tamanoCuadrados);
-                //cuadrados[(coordenada.getY()-ubicacionPanel.getY())/tamanoCuadrados][(coordenada.getX()-ubicacionPanel.getX())/tamanoCuadrados].setPer_barco(true);
+                cuadrados[(coordenada.getY()-ubicacionPanel.getY())/tamanoCuadrados][(coordenada.getX()-ubicacionPanel.getX())/tamanoCuadrados].setPer_barco(true);
             }
         }
     }

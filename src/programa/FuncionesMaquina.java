@@ -11,7 +11,7 @@ package programa;
  */
 public class FuncionesMaquina {
     public Barco[] generarBarcos(int tamano) {
-        Barco[] barcosMaquina = new Barco[6];
+        Barco[] barcosMaquina = new Barco[5];
         barcosMaquina[0] = this.generarBarco(barcosMaquina, 5, 0, tamano);
         barcosMaquina[1] = this.generarBarco(barcosMaquina, 4, 1, tamano);
         barcosMaquina[2] = this.generarBarco(barcosMaquina, 3, 2, tamano);
@@ -28,6 +28,8 @@ public class FuncionesMaquina {
         while (!(barcoCreado)) {
             int coordenadaY = ((int) (Math.random() * 10 + 1)) - 1;
             int coordenadaX = ((int) (Math.random() * 10 + 1)) - 1;
+            coordenadaY = coordenadaY * tamano02;
+            coordenadaX =coordenadaX * tamano02;
             coordenadaCabeza = new Coordenada(coordenadaX, coordenadaY);
             Boolean cordenadasValidas = true;
             Boolean orientacionValida= false;
@@ -39,14 +41,14 @@ public class FuncionesMaquina {
                 for (int i = 0; i < numeroBarcos; i++) {
                     if(orientacion){
                         for(int j=0; j<tamano; j++){
-                            if((this.isCoordenada(new Coordenada((coordenadaX), (coordenadaY+j)), (barcosGenerados[i].getCoordenadas())))){
+                            if((this.isCoordenada(new Coordenada((coordenadaX), (coordenadaY+(j*tamano02))), (barcosGenerados[i].getCoordenadas())))){
                                 cordenadasValidas = false;
                             }
                         }
                     }
                     else{
                         for(int s=0; s<tamano; s++){
-                            if((this.isCoordenada(new Coordenada((coordenadaX+s), (coordenadaY)), (barcosGenerados[i].getCoordenadas())))){
+                            if((this.isCoordenada(new Coordenada((coordenadaX+(s*tamano02)), (coordenadaY)), (barcosGenerados[i].getCoordenadas())))){
                                 cordenadasValidas = false;
                             }}
                     }

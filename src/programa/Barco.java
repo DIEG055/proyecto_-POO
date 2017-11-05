@@ -33,7 +33,9 @@ public class Barco {
     public int cabezaY(){return this.coordenadas[0].getY();}
 
     public Coordenada[] getCoordenadas() {return coordenadas;}
-
+    
+    public Coordenada getCoordenada(int i) {return coordenadas[i];}
+    
     public int getTamanoCuadrados() {return tamanoCuadrados;}
     
     
