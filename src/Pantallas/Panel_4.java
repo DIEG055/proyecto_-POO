@@ -120,34 +120,40 @@ public class Panel_4 extends JPanel implements MouseListener {
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(modo){
-            //Aqui usamos la informacion para detectar donde pulso el jugador
-            //Pintamos o modificamos donde el usuario jugo
-            //Modificamos el golpeado del cuadrado CAMILO
-            //Las vidas de los barcos, para saber si ya se acabo el juego o no CAMILO
-            
-            //Hacemos que la maquina juegue
-            //Pintamos o modificamos donde la maquina jugo
-            //Modificamos el golpeado del cuadrado
-            //Las vidas de los barcos, para saber si ya se acabo el juego o no
-        }
-        else{
-            if(turno){
+        if(estado){
+            if(modo){
                 //Aqui usamos la informacion para detectar donde pulso el jugador
                 //Pintamos o modificamos donde el usuario jugo
+                //Modificamos el golpeado del cuadrado CAMILO
+                //Las vidas de los barcos, para saber si ya se acabo el juego o no CAMILO
+
+                //Hacemos que la maquina juegue
+                //Pintamos o modificamos donde la maquina jugo
                 //Modificamos el golpeado del cuadrado
                 //Las vidas de los barcos, para saber si ya se acabo el juego o no
-                //Cambiamos turno
-            }
+            }//If modo
             else{
-                //Aqui usamos la informacion para detectar donde pulso el jugador
-                //Pintamos o modificamos donde el usuario jugo
-                //Modificamos el golpeado del cuadrado
-                //Las vidas de los barcos, para saber si ya se acabo el juego o no
-                //Cambiamos turno
-            }
-            
-        }
+                if(turno){
+                    //Aqui usamos la informacion para detectar donde pulso el jugador
+                    //Pintamos o modificamos donde el usuario jugo
+                    //Modificamos el golpeado del cuadrado
+                    //Las vidas de los barcos, para saber si ya se acabo el juego o no
+                    //Cambiamos turno
+                }//IF TURNO
+                
+                else{
+                    //Aqui usamos la informacion para detectar donde pulso el jugador
+                    //Pintamos o modificamos donde el usuario jugo
+                    //Modificamos el golpeado del cuadrado
+                    //Las vidas de los barcos, para saber si ya se acabo el juego o no
+                    //Cambiamos turno
+                }//ELSE TURNO
+            }//ELSE MODO
+        }//IF ESTADO
+        
+        else{
+            //NOS INDICA QUIEN GANO
+        }//ELSE ESTADO
     }
 
     @Override
