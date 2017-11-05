@@ -31,13 +31,16 @@ public class Tablero {
       boolean ac=true;
         int h=(c.getX()-ubicacionPanel.getX())/tamanoCuadrados;
        int v=(c.getY()-ubicacionPanel.getY())/tamanoCuadrados;
-        for(int i=0;i<tam;i++){
+       try{ 
+       for(int i=0;i<tam;i++){
             if(b){
-              ac&= !cuadrados[h][v+i].isPer_barco();
+              ac&= !cuadrados[v+i][h].isPer_barco();
             }else{
-              ac&= !cuadrados[h+i][v].isPer_barco();
+              ac&= !cuadrados[v][h+i].isPer_barco();
             }
         }
+       }catch(ArrayIndexOutOfBoundsException e) {
+       }
     return ac;
     }
     public boolean cabe_barco(Coordenada cabeza,int tam, boolean orientacion){
@@ -73,15 +76,42 @@ public class Tablero {
             int v=(cabeza.getY()-ubicacionPanel.getY())/tamanoCuadrados;
             for(int i=0;i<tamano;i++){
                 if(orientacion){
-                    this.cuadrados[h+i][v].setPer_barco(true);
+                    this.cuadrados[v+i][h].setPer_barco(true);
                 }else{
-                    this.cuadrados[h][v+i].setPer_barco(true);
+                    this.cuadrados[v][h+i].setPer_barco(true);
                 }
+                
             }
             this.barcos_creados ++;
-        } else {
+            int q=0;
+            for(int j=0;j<10;j++){
+                for(int k=0;k<10;k++){
+                    if(this.cuadrados[j][k].isPer_barco()){
+                    System.out.print(1);
+                    q++;
+                    if(q%10==0){
+                        System.out.println();
+                    }
+                    }else{
+                        System.out.print(0);
+                        q++;
+                        if(q%10==0){
+                        System.out.println();
+                    }
+                    }
+                }
+            }
         }
         
+    }
+    
+    public boolean crear_barcovf(Point click,boolean orientacion, int tamano){
+        boolean ac= false;
+        Coordenada cabeza=cabeza(click);  
+        if( cabe_barco(cabeza,tamano,orientacion) && desocupado_total(cabeza,tamano,orientacion) ){
+            ac=true;
+        }
+        return ac;
     }
 
     public Cuadro[][] getCuadrados() {

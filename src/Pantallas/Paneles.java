@@ -10,8 +10,9 @@ import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Paneles  extends JPanel implements ActionListener{
    panel_1 p1= new panel_1();
    Panel_2 p2 = new Panel_2(); 
    Panel_3 p3 = new Panel_3();
+   Panel_4 p4 = new Panel_4();
     public Paneles() {
         super( new BorderLayout ());
         add(p1);
@@ -44,8 +46,12 @@ public class Paneles  extends JPanel implements ActionListener{
         p3.add(p3.REGRESAR);
         p3.horizontal.addActionListener(this);
         p3.vertical.addActionListener(this);
+        p3.poner.addActionListener(this);
         p3.add(p3.vertical);
         p3.add(p3.horizontal);
+        p3.add(p3.poner);
+        p3.COMENZAR.addActionListener(this);
+        p3.add(p3.COMENZAR);
     }
    
    
@@ -76,6 +82,17 @@ public class Paneles  extends JPanel implements ActionListener{
             remove(p3);
             add(p2);
         }
+        if(e.getSource().equals(p3.poner)){
+            p3.poner();
+        }
+        if(e.getSource().equals(p3.COMENZAR)){
+            if(p3.tablero1.getbarcos_creados()==5){
+            remove(p3);
+            add(p4);
+        }
+           
+        }
+
         repaint();
         revalidate();
     }
