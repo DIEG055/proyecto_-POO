@@ -24,29 +24,40 @@ import programa.Jugador;
  */
 public class Paneles  extends JPanel implements ActionListener{
 
-    private  int xref1=30;
-    private  int yref1=100;
-    private  int tam_cuadrado=30;
-    private Coordenada ct1= new Coordenada(this.xref1,this.yref1);  
-    
+//    private  int xref1=30;
+//    private  int yref1=100;
+//    private  int tam_cuadrado=30;
+//    private Coordenada ct1= new Coordenada(this.xref1,this.yref1);  
     
     panel_1 p1= new panel_1();
     Panel_2 p2 = new Panel_2(); 
     Panel_3 p3 = new Panel_3();
     Tablero tablero_local=p3.tablero1;
     
+    private Jugador jugador01;
+    private Jugador jugador02;
+    private Maquina maquina;
     
     
     
+    //Tenemos que saber que modo de juego quiere el usuario
+    //Crear If para eso papu
+    
+    //Si el modo de juego es vs la computadora va hacer esto
     //Creamos los jugadores en este caso, creamos la maquina y el jugador 
     //Tenemos que dar la coordenada de la ubicacion, y el tamaño de los cuadrados
-    Maquina cpu = new Maquina(new Coordenada(0, 0), 10);
+    Maquina cpu = new Maquina(new Coordenada(20, 100), 15);
     //Variable que me permita cambiar el nombre
-    Jugador jugador = new Jugador("Jugador 1", new Tablero(new Coordenada(20, 0 ), cpu.generarBarcos(10)));
+    Jugador jugador = new Jugador("Jugador 1", tablero_local);
     //Llamanos al panel a traves del contructor jugador vs cpu
     Panel_4 p4 = new Panel_4(jugador, cpu); 
     
-    //Panel_4 p4 = new Panel_4(xref1,xref1+350,yref1,yref1,tam_cuadrado); 
+    
+    //else
+    
+    
+    
+    
     
     
     public Paneles() {

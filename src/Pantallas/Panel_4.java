@@ -28,6 +28,7 @@ public class Panel_4 extends JPanel implements MouseListener {
     private Maquina maquina;
     private boolean turno; // true para jugador 1, false para jugador2 o la maquina
     private boolean estado; //True si aun se puede jugar, false si no se puede jugar.
+    private boolean modo; //True para jugador vs maquina, false para jugador 01 vs jugador 02
     int xref1,xref2,yref1,yref2,tam_cuadrado;
     Coordenada c1,c2;
 
@@ -41,12 +42,15 @@ public class Panel_4 extends JPanel implements MouseListener {
         this.c2 = new Coordenada(xref2,yref2);
     }
     
+    
+    
     public Panel_4(Jugador jugador, Maquina maquina){
         this.jugador01 = jugador;
         this.jugador02 = null;
         this.maquina = maquina;
         this.turno= true;
         this.estado= true;
+        this.modo = true;
         this.tam_cuadrado=jugador.getTablero().getTamanoCuadrados();
         
         this.c1 = jugador.getTablero().getUbicacionPanel();
@@ -55,9 +59,27 @@ public class Panel_4 extends JPanel implements MouseListener {
         this.yref1 = jugador.getTablero().getUbicacionPanel().getY();
         this.xref2 = maquina.getTablero().getUbicacionPanel().getX();
         this.yref2 = maquina.getTablero().getUbicacionPanel().getY();
-        System.out.println(xref1 + " " + yref1 +  " " + xref2 + " " + yref2 + " tamano: " + tam_cuadrado);
-        
     }
+    
+    public Panel_4(Jugador jugador01, Jugador jugador02){
+        this.jugador01 = jugador01;
+        this.jugador02 = jugador02;
+        this.maquina = null;
+        this.turno= true;
+        this.estado= true;
+        this.modo = false;
+        this.tam_cuadrado=jugador01.getTablero().getTamanoCuadrados();
+        
+        this.c1 = jugador01.getTablero().getUbicacionPanel();
+        this.c2 = jugador02.getTablero().getUbicacionPanel();
+        this.xref1 = jugador01.getTablero().getUbicacionPanel().getX();
+        this.yref1 = jugador01.getTablero().getUbicacionPanel().getY();
+        this.xref2 = jugador02.getTablero().getUbicacionPanel().getX();
+        this.yref2 = jugador02.getTablero().getUbicacionPanel().getY();
+    }
+    
+    
+    
     
         @Override
     public void paintComponent(Graphics g) {
@@ -78,6 +100,12 @@ public class Panel_4 extends JPanel implements MouseListener {
             }
         }
         
+        for (int i=0; i<10; i++){
+            for (int j=0; j<10; j++){
+            
+            }
+        }
+        
         
     }
        
@@ -92,7 +120,34 @@ public class Panel_4 extends JPanel implements MouseListener {
     
     @Override
     public void mouseClicked(MouseEvent e) {
-     
+        if(modo){
+            //Aqui usamos la informacion para detectar donde pulso el jugador
+            //Pintamos o modificamos donde el usuario jugo
+            //Modificamos el golpeado del cuadrado CAMILO
+            //Las vidas de los barcos, para saber si ya se acabo el juego o no CAMILO
+            
+            //Hacemos que la maquina juegue
+            //Pintamos o modificamos donde la maquina jugo
+            //Modificamos el golpeado del cuadrado
+            //Las vidas de los barcos, para saber si ya se acabo el juego o no
+        }
+        else{
+            if(turno){
+                //Aqui usamos la informacion para detectar donde pulso el jugador
+                //Pintamos o modificamos donde el usuario jugo
+                //Modificamos el golpeado del cuadrado
+                //Las vidas de los barcos, para saber si ya se acabo el juego o no
+                //Cambiamos turno
+            }
+            else{
+                //Aqui usamos la informacion para detectar donde pulso el jugador
+                //Pintamos o modificamos donde el usuario jugo
+                //Modificamos el golpeado del cuadrado
+                //Las vidas de los barcos, para saber si ya se acabo el juego o no
+                //Cambiamos turno
+            }
+            
+        }
     }
 
     @Override

@@ -46,13 +46,9 @@ public class Tablero {
     }
     
     public void informarCuadradosBarcos(){
-        
         for(Barco barco: barcos){
-//            System.out.println(" TAMANO CUADRADOS   vvvvvb :    "+ barco.getTamanoCuadrados());
-//            System.out.println(ubicacionPanel.getY() + "  " + ubicacionPanel.getX());
-//            for(Coordenada coordenada: barco.getCoordenadas()){}
             for(Coordenada coordenada: barco.getCoordenadas()){
-                cuadrados[(coordenada.getY()-ubicacionPanel.getY())/tamanoCuadrados][(coordenada.getX()-ubicacionPanel.getX())/tamanoCuadrados].setPer_barco(true);
+                    cuadrados[(coordenada.getY())/tamanoCuadrados][(coordenada.getX())/tamanoCuadrados].setPer_barco(true);
             }
         }
     }
