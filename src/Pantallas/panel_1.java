@@ -23,7 +23,6 @@ public class panel_1 extends JPanel {
     public panel_1() {
         
         iniciar.setSize(200, 100);
-        Point p= new Point(300,300);
         iniciar.setLocation(300,300);
         iniciar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         iniciar.setForeground(new java.awt.Color(255, 255, 255));

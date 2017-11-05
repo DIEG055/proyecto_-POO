@@ -39,6 +39,7 @@ public class Panel_3 extends JPanel implements MouseListener {
     private boolean puesto=false;
     private Coordenada ct= new Coordenada(this.xref,this.yref);   
     Tablero tablero1= new Tablero(ct,this.tam_cuadrado);
+    private  boolean prueba= true;
     
     JButton REGRESAR = new JButton("REGRESAR");
     JButton poner = new JButton("Poner barco");
@@ -103,7 +104,7 @@ public class Panel_3 extends JPanel implements MouseListener {
     private void pinta_provicional(Graphics g){
         Graphics2D c = (Graphics2D) g; 
         c.setColor(Color.ORANGE);
-        if(!(this.x_aux==0)){
+        if(!(this.x_aux==0) && prueba){
         try{
             for(int i=0;i<this.t[tam];i++){
                 if(orientacion){
@@ -116,20 +117,6 @@ public class Panel_3 extends JPanel implements MouseListener {
         }
     }
     
-    private void definitivo(Graphics g){
-        Graphics2D c = (Graphics2D) g; 
-        c.setColor(Color.ORANGE);
-        if(!(this.x_aux==0)){
-            for(int i=0;i<this.t[tam];i++){
-                if(orientacion){
-                    c.fillRect(x_aux, y_aux+(i*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado);
-                }else{
-                    c.fillRect(x_aux+(i*this.tam_cuadrado), y_aux, this.tam_cuadrado, this.tam_cuadrado);
-                }
-            }
-        }
-    } 
-
        
     public Coordenada cabeza(Point p){
         Coordenada cabeza= new Coordenada(0,0);
@@ -170,6 +157,7 @@ public class Panel_3 extends JPanel implements MouseListener {
         if(tablero1.crear_barcovf(e.getPoint(), orientacion,t[this.tam])){
             this.x_aux=aux.getX();
             this.y_aux=aux.getY();
+            this.prueba=true;
             repaint();
         } 
     }
@@ -194,6 +182,7 @@ public class Panel_3 extends JPanel implements MouseListener {
         if(tam<5){
             tam++;
         }
+        this.prueba=false;
         repaint();      
     }
 
