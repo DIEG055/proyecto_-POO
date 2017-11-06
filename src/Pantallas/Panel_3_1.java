@@ -16,7 +16,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import programa.Coordenada;
