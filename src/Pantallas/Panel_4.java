@@ -53,6 +53,7 @@ public class Panel_4 extends JPanel implements MouseListener {
         this.yref1 = jugador.getTablero().getUbicacionPanel().getY();
         this.xref2 = maquina.getTablero().getUbicacionPanel().getX();
         this.yref2 = maquina.getTablero().getUbicacionPanel().getY();
+        addMouseListener(this);
     }
     
     public Panel_4(Jugador jugador01, Jugador jugador02){
@@ -70,6 +71,7 @@ public class Panel_4 extends JPanel implements MouseListener {
         this.yref1 = jugador01.getTablero().getUbicacionPanel().getY();
         this.xref2 = jugador02.getTablero().getUbicacionPanel().getX();
         this.yref2 = jugador02.getTablero().getUbicacionPanel().getY();
+        addMouseListener(this);
     }
     
     
@@ -115,8 +117,14 @@ public class Panel_4 extends JPanel implements MouseListener {
                 }
                 if(jugador01.getTablero().getCuadrados()[i][j].isGolpeado()){
                     Coordenada aux= jugador01.getTablero().getCuadrados()[i][j].getCoordenada();
-                    c.setColor(Color.CYAN);
+                    if(jugador01.getTablero().getCuadrados()[i][j].isPer_barco()){
+                            c.setColor(Color.BLUE);
+                        }
+                    else{
+                            c.setColor(Color.CYAN);
+                    }
                     c.fillRect(aux.getX(),aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
+                    
                 }
             }
         } 
@@ -128,11 +136,11 @@ public class Panel_4 extends JPanel implements MouseListener {
         return image;
     }
     
-        public Coordenada golpe(Point p, Tablero tablero){
+    public Coordenada golpe(Point p, Tablero tablero){
         Coordenada cabeza= new Coordenada(0,0);
         Cuadro[][] aux= tablero.getCuadrados();;    
         for(int i=0;i<10;i++){
-            for(int j=0;j<10;j++){       
+            for(int j=0;j<10;j++){
                 if(aux[i][j].getRectangulo().contains(p)){
                     cabeza=aux[i][j].getCoordenada();
                 }
@@ -141,56 +149,131 @@ public class Panel_4 extends JPanel implements MouseListener {
         return cabeza;
     }
     
+    public Coordenada golpe02(Point p, Tablero tablero){
+        Coordenada cabeza= new Coordenada(0,0);
+        Cuadro[][] aux= tablero.getCuadrados();   
+        for(int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                if(aux[i][j].getRectangulo().contains(p)){
+                    cabeza=new Coordenada(i, j);
+                }
+            }
+        }
+        return cabeza;
+    }
     
+   
+    
+    public void setCuadroGolpeado(Point p, String jugador){
+        Coordenada coordenada;
+        Coordenada coordenada02;
+        if(jugador.equals("Jugador01")){
+            coordenada = golpe02(p, jugador01.getTablero());
+            coordenada02 = golpe(p, jugador01.getTablero());
+            jugador01.getTablero().getCuadrados()[coordenada.getX()][coordenada.getY()].setGolpeado(true);
+            for(int i=0; i<5; i++){
+                if(jugador01.getTablero().getbarco(i).coordenadaPertenece(coordenada02)){
+                    jugador01.getTablero().getbarco(i).quitarVida();
+                }
+            }
+            
+        }
+        else{
+            if(jugador.equals("Jugador02")){
+                coordenada = golpe02(p, jugador02.getTablero());
+                coordenada02 = golpe(p, jugador02.getTablero());
+                jugador02.getTablero().getCuadrados()[coordenada.getX()][coordenada.getY()].setGolpeado(true);
+                for(int i=0; i<5; i++){
+                    if(jugador02.getTablero().getbarco(i).coordenadaPertenece(coordenada02)){
+                        jugador02.getTablero().getbarco(i).quitarVida();
+                    }
+                }
+            }
+            else{
+                if(jugador.equals("Maquina")){
+                    coordenada = golpe02(p, maquina.getTablero());
+                    coordenada02 = golpe(p, maquina.getTablero());
+                    maquina.getTablero().getCuadrados()[coordenada.getX()][coordenada.getY()].setGolpeado(true);
+                    for(int i=0; i<5; i++){
+                        if(maquina.getTablero().getbarco(i).coordenadaPertenece(coordenada02)){
+                            maquina.getTablero().getbarco(i).quitarVida();
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    public void actualizarEstadoJuego(){
+        boolean estadoAux = true;
+        if(jugador01.getTablero().getBarcosVivos() == 0){ estadoAux = false;}
+        else{}
+        
+        if(modo){if(maquina.getTablero().getBarcosVivos() == 0){ estadoAux = false;}}
+        else{if(jugador02.getTablero().getBarcosVivos() == 0){ estadoAux = false;}}
+        
+        this.estado =estadoAux;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         Point p= new Point();
         Coordenada lugar_golpe= new Coordenada(0,0);
         if(estado){
             if(modo){
+                //this.Recorrer(jugador01.getTablero());
                 p= e.getPoint();
-                lugar_golpe= golpe(p,maquina.getTablero());
-                repaint();
-            //listo    //Aqui usamos la informacion para detectar donde pulso el jugador
-            //listo    //Pintamos o modificamos donde el usuario jugo
-                //Modificamos el golpeado del cuadrado CAMILO
+                lugar_golpe= golpe(p,jugador01.getTablero());
+                this.setCuadroGolpeado(p, "Jugador01");
+                this.actualizarEstadoJuego();
+                repaint(); 
+                //listo//Aqui usamos la informacion para detectar donde pulso el jugador
+                //listo//Pintamos o modificamos donde el usuario jugo
+                //Listo//Modificamos el golpeado del cuadrado CAMILO
                 //Las vidas de los barcos, para saber si ya se acabo el juego o no CAMILO
 
                 //Hacemos que la maquina juegue
-                
-         //Coordenada dada por la maquina       
-            
-            //listo    //Pintamos o modificamos donde la maquina jugo
+                //Coordenada dada por la maquina       
+
+                //listo    //Pintamos o modificamos donde la maquina jugo
                 //Modificamos el golpeado del cuadrado
                 //Las vidas de los barcos, para saber si ya se acabo el juego o no
             }//If modo
             else{
                 if(turno){
-                     p= e.getPoint();
-                lugar_golpe= golpe(p,jugador02.getTablero());
-                repaint();
+                    p= e.getPoint();
+                    lugar_golpe= golpe(p,jugador01.getTablero());
+                    this.setCuadroGolpeado(p, "Jugador01");
+                    this.actualizarEstadoJuego();
+                    repaint();
                     //Aqui usamos la informacion para detectar donde pulso el jugador
                     //Pintamos o modificamos donde el usuario jugo
                     //Modificamos el golpeado del cuadrado
                     //Las vidas de los barcos, para saber si ya se acabo el juego o no
                     //Cambiamos turno
+                    
                 }//IF TURNO
                 
                 else{
                      p= e.getPoint();
-                lugar_golpe= golpe(p,jugador01.getTablero());
-                repaint();
+                    lugar_golpe= golpe(p,jugador02.getTablero());
+                    this.setCuadroGolpeado(p, "Jugador02");
+                    this.actualizarEstadoJuego();   
+                    repaint();
                    //listo    //Aqui usamos la informacion para detectar donde pulso el jugador
                     //listo   //Pintamos o modificamos donde el usuario jugo
                     //Modificamos el golpeado del cuadrado
                     //Las vidas de los barcos, para saber si ya se acabo el juego o no
                     //Cambiamos turno
+                    
+                    
                 }//ELSE TURNO
             }//ELSE MODO
         }//IF ESTADO
         
         else{
-            //NOS INDICA QUIEN GANO
+            System.out.println("FIN DEL JUEGO CHAVAL");
         }//ELSE ESTADO
     }
 

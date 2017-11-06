@@ -146,6 +146,13 @@ public class Tablero {
     }
 
     public int getBarcosVivos() {
+        int barcosVivosAux =0;
+        for (Barco barco : barcos) {
+            if(barco.getVidas()>0){
+                barcosVivosAux++;
+            }
+        }
+        this.barcosVivos = barcosVivosAux;
         return barcosVivos;
     }
     
@@ -189,7 +196,7 @@ public class Tablero {
         }
     }
     
-    
+    //public boolean isVivo(){}
     
     
 }

@@ -21,6 +21,16 @@ public class Barco {
             }
         }
     }
+    
+    public boolean coordenadaPertenece(Coordenada coordenada){
+        boolean aux = false;
+        for (Coordenada coordenada01 : coordenadas) {
+            if((coordenada01.getX() == coordenada.getX()) && (coordenada01.getY() == coordenada.getY())){
+                aux=true;
+            }
+        }
+        return aux;
+    }
 
     public int getVidas() {return vidas;}
 
@@ -38,6 +48,11 @@ public class Barco {
     
     public int getTamanoCuadrados() {return tamanoCuadrados;}
     
+    public void quitarVida(){
+        if(this.vidas >0){
+            this.vidas = this.vidas -1;
+        }
+    }
     
         
 }
