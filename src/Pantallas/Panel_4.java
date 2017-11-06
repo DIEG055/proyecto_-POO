@@ -81,28 +81,27 @@ public class Panel_4 extends JPanel implements MouseListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         dibujarEscenario(g);   
+        pintar_golpe(g);
 
     }
 
-    private void dibujarEscenario(Graphics g) {
+    private void pintar_golpe(Graphics g) {
         Graphics2D c = (Graphics2D) g; 
-        Image fondo = loadImage("fondo_partida.jpg");
-        c.drawImage(fondo, 0, 0, null);
-        c.setColor(Color.WHITE);
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
-                c.drawRect(this.xref1+(i*this.tam_cuadrado),this.yref1+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado); 
-                
-                c.drawRect(this.xref2+(i*this.tam_cuadrado),this.yref2+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado);
                 if(modo){
                     if(maquina.getTablero().getCuadrados()[i][j].isGolpeado()){
                         Coordenada aux= maquina.getTablero().getCuadrados()[i][j].getCoordenada();
                         if(maquina.getTablero().getCuadrados()[i][j].isPer_barco()){
                             c.setColor(Color.BLUE);
+                            c.fillRect(aux.getX(),aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
+                            c.setColor(Color.ORANGE);
+                            c.drawRect(aux.getX(),aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
                         }else{
                             c.setColor(Color.CYAN);
+                            c.fillRect(aux.getX(),aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
                         }
-                        c.fillRect(aux.getX(),aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
+                        
                     }
                 }else{
                     if(jugador02.getTablero().getCuadrados()[i][j].isGolpeado()){
@@ -130,6 +129,19 @@ public class Panel_4 extends JPanel implements MouseListener {
         } 
     }
        
+    private void dibujarEscenario(Graphics g) {
+        Graphics2D c = (Graphics2D) g; 
+        Image fondo = loadImage("fondo_partida.jpg");
+        c.drawImage(fondo, 0, 0, null);
+        c.setColor(Color.WHITE);
+        for(int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                c.drawRect(this.xref1+(i*this.tam_cuadrado),this.yref1+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado); 
+                
+                c.drawRect(this.xref2+(i*this.tam_cuadrado),this.yref2+(j*this.tam_cuadrado), this.tam_cuadrado, this.tam_cuadrado);
+            }   
+        }
+    }
     public Image loadImage(String imageName) {
         ImageIcon ii = new ImageIcon(imageName);
         Image image = ii.getImage();
