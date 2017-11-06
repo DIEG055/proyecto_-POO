@@ -77,7 +77,7 @@ public class Panel_4 extends JPanel implements MouseListener {
     
     
     
-        @Override
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         dibujarEscenario(g);   
@@ -161,7 +161,7 @@ public class Panel_4 extends JPanel implements MouseListener {
         return cabeza;
     }
     
-    
+    //Nos arroja un i, j 
     public Coordenada golpe02(Point p, Tablero tablero){
         Coordenada cabeza= new Coordenada(0,0);
         Cuadro[][] aux= tablero.getCuadrados();   
@@ -244,6 +244,22 @@ public class Panel_4 extends JPanel implements MouseListener {
         
         this.estado =estadoAux;
     }
+    
+    public boolean golpeValido(Point p, Tablero tablero){
+        boolean valido;
+        Coordenada dondeGolpeo= golpe(p, tablero);
+        if((dondeGolpeo.getX()>= tablero.getUbicacionPanel().getX()) && ((dondeGolpeo.getY()>= tablero.getUbicacionPanel().getY()))){
+            if((dondeGolpeo.getX()<((tablero.getUbicacionPanel().getX())+(10*tablero.getTamanoCuadrados()))) &&
+               (dondeGolpeo.getY()<((tablero.getUbicacionPanel().getY())+(10*tablero.getTamanoCuadrados())))){
+                valido=true;
+            }
+            else{valido=false;}
+        }
+        
+        else{ valido=false;}
+        
+        return valido;
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -253,10 +269,12 @@ public class Panel_4 extends JPanel implements MouseListener {
             if(modo){
                 //this.Recorrer(jugador01.getTablero());
                 p= e.getPoint();
-                lugar_golpe= golpe(p,maquina.getTablero());
-                this.setCuadroGolpeado(p, "Maquina");
-                this.actualizarEstadoJuego();
-                repaint(); 
+                if(golpeValido(p, maquina.getTablero())){
+                    lugar_golpe= golpe(p,maquina.getTablero());
+                    this.setCuadroGolpeado(p, "Maquina");
+                    this.actualizarEstadoJuego();
+                    repaint(); 
+                }
                 //listo//Aqui usamos la informacion para detectar donde pulso el jugador
                 //listo//Pintamos o modificamos donde el usuario jugo
                 //Listo//Modificamos el golpeado del cuadrado CAMILO
@@ -272,10 +290,14 @@ public class Panel_4 extends JPanel implements MouseListener {
             else{
                 if(turno){
                     p= e.getPoint();
-                    lugar_golpe= golpe(p,jugador02.getTablero());
-                    this.setCuadroGolpeado(p, "Jugador02");
-                    this.actualizarEstadoJuego();
-                    repaint();
+                    if(golpeValido(p, jugador02.getTablero())){
+                        lugar_golpe= golpe(p,jugador02.getTablero());
+                        this.setCuadroGolpeado(p, "Jugador02");
+                        this.actualizarEstadoJuego();
+                        this.turno = false;
+                        repaint();
+                    }
+                    
                     //Aqui usamos la informacion para detectar donde pulso el jugador
                     //Pintamos o modificamos donde el usuario jugo
                     //Modificamos el golpeado del cuadrado
@@ -286,10 +308,13 @@ public class Panel_4 extends JPanel implements MouseListener {
                 
                 else{
                      p= e.getPoint();
-                    lugar_golpe= golpe(p,jugador01.getTablero());
-                    this.setCuadroGolpeado(p, "Jugador01");
-                    this.actualizarEstadoJuego();   
-                    repaint();
+                     if(golpeValido(p, jugador01.getTablero())){
+                        lugar_golpe= golpe(p,jugador01.getTablero());
+                        this.setCuadroGolpeado(p, "Jugador01");
+                        this.actualizarEstadoJuego();   
+                        this.turno = true;
+                        repaint();
+                     }
                    //listo    //Aqui usamos la informacion para detectar donde pulso el jugador
                     //listo   //Pintamos o modificamos donde el usuario jugo
                     //Modificamos el golpeado del cuadrado
