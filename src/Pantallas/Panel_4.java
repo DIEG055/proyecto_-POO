@@ -149,6 +149,7 @@ public class Panel_4 extends JPanel implements MouseListener {
         return cabeza;
     }
     
+    
     public Coordenada golpe02(Point p, Tablero tablero){
         Coordenada cabeza= new Coordenada(0,0);
         Cuadro[][] aux= tablero.getCuadrados();   
@@ -156,6 +157,22 @@ public class Panel_4 extends JPanel implements MouseListener {
             for(int j=0;j<10;j++){
                 if(aux[i][j].getRectangulo().contains(p)){
                     cabeza=new Coordenada(i, j);
+                }
+            }
+        }
+        return cabeza;
+    }
+    
+    //Este golpe me arroja las coordenadas sin la ubicacion del panel. Es importante ya que la maquina
+    //Genera un tablero y no tiene la ubicacion
+    public Coordenada golpe03(Point p, Tablero tablero){
+        Coordenada cabeza= new Coordenada(0,0);
+        Cuadro[][] aux= tablero.getCuadrados();;    
+        for(int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                if(aux[i][j].getRectangulo().contains(p)){
+                    cabeza=new Coordenada(((aux[i][j].getCoordenada().getX())-tablero.getUbicacionPanel().getX()), 
+                                          (((aux[i][j].getCoordenada().getY())-tablero.getUbicacionPanel().getY())));
                 }
             }
         }
@@ -192,7 +209,7 @@ public class Panel_4 extends JPanel implements MouseListener {
             else{
                 if(jugador.equals("Maquina")){
                     coordenada = golpe02(p, maquina.getTablero());
-                    coordenada02 = golpe(p, maquina.getTablero());
+                    coordenada02 = golpe03(p, maquina.getTablero());
                     maquina.getTablero().getCuadrados()[coordenada.getX()][coordenada.getY()].setGolpeado(true);
                     for(int i=0; i<5; i++){
                         if(maquina.getTablero().getbarco(i).coordenadaPertenece(coordenada02)){
@@ -224,8 +241,8 @@ public class Panel_4 extends JPanel implements MouseListener {
             if(modo){
                 //this.Recorrer(jugador01.getTablero());
                 p= e.getPoint();
-                lugar_golpe= golpe(p,jugador01.getTablero());
-                this.setCuadroGolpeado(p, "Jugador01");
+                lugar_golpe= golpe(p,maquina.getTablero());
+                this.setCuadroGolpeado(p, "Maquina");
                 this.actualizarEstadoJuego();
                 repaint(); 
                 //listo//Aqui usamos la informacion para detectar donde pulso el jugador
@@ -243,8 +260,8 @@ public class Panel_4 extends JPanel implements MouseListener {
             else{
                 if(turno){
                     p= e.getPoint();
-                    lugar_golpe= golpe(p,jugador01.getTablero());
-                    this.setCuadroGolpeado(p, "Jugador01");
+                    lugar_golpe= golpe(p,jugador02.getTablero());
+                    this.setCuadroGolpeado(p, "Jugador02");
                     this.actualizarEstadoJuego();
                     repaint();
                     //Aqui usamos la informacion para detectar donde pulso el jugador
@@ -257,8 +274,8 @@ public class Panel_4 extends JPanel implements MouseListener {
                 
                 else{
                      p= e.getPoint();
-                    lugar_golpe= golpe(p,jugador02.getTablero());
-                    this.setCuadroGolpeado(p, "Jugador02");
+                    lugar_golpe= golpe(p,jugador01.getTablero());
+                    this.setCuadroGolpeado(p, "Jugador01");
                     this.actualizarEstadoJuego();   
                     repaint();
                    //listo    //Aqui usamos la informacion para detectar donde pulso el jugador
