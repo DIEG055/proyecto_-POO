@@ -6,12 +6,34 @@
 package programa;
 
 public class MainPruebas {
+//    public void ataque_maquina(int cooordenadaX,int coordenadaY,Cuadro[][] c_barcos){
+//        if(c_barcos[cooordenadaX][coordenadaY].isPer_barco()){
+//            //pasa turno 
+//            if(c_barcos[cooordenadaX+1][coordenadaY].isPer_barco()){
+//            ataque_maquina(cooordenadaX+1, coordenadaY, c_barcos);
+//            }
+//            if(c_barcos[cooordenadaX-1][coordenadaY].isPer_barco()){
+//            ataque_maquina(cooordenadaX-1, coordenadaY, c_barcos);
+//            }
+//            if(c_barcos[cooordenadaX][coordenadaY+1].isPer_barco()){
+//            ataque_maquina(cooordenadaX, coordenadaY+1, c_barcos);
+//            }
+//            if(c_barcos[cooordenadaX][coordenadaY-1].isPer_barco()){
+//            ataque_maquina(cooordenadaX, coordenadaY-1, c_barcos);
+//            }
+//        }else{
+//            coordenadaY = ((int) (Math.random() * 10 + 1)) - 1;
+//            cooordenadaX = ((int) (Math.random() * 10 + 1)) - 1;
+//            ataque_maquina(cooordenadaX, coordenadaY, c_barcos);
+//            
+//        }
+//    } literalmente seria dificultad dios pero no se me ocurre otra forma
 
     public static void main(String[] args) {
-      //  Maquina miMaquina = new Maquina(new Coordenada(0, 0), 1);
-//       miMaquina.MostarBarcos(miMaquina.generarBarcos(1));
-         
-        //Tablero miTablero = 
+//      int coordenadaY = ((int) (Math.random() * 10 + 1)) - 1;
+//      int coordenadaX = ((int) (Math.random() * 10 + 1)) - 1;
+//      Tablero tab_jugador=jugador01.getTablero;
+//      Cuadro[][] c_barcos=tab_jugador.getCuadrados();
+        }
     }
 
-}
