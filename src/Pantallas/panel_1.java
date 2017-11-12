@@ -17,28 +17,49 @@ import javax.swing.JPanel;
  * @author juanm
  */
 public class panel_1 extends JPanel {
-   
-    JButton iniciar= new JButton("INICIAR");
-    JButton configuracion= new JButton("CONFIGURACION");
+
+    JButton iniciar = new JButton("INICIAR");
+    JButton configuracion = new JButton("CONFIGURACION");
+
     public panel_1() {
-        
-        iniciar.setSize(200, 100);
-        iniciar.setLocation(300,300);
-        iniciar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        iniciar.setForeground(new java.awt.Color(255, 255, 255));
-        iniciar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        iniciar.setContentAreaFilled(false);
-        
-        configuracion.setSize(200, 100);
-        configuracion.setLocation(300,300);
-        configuracion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        this.setLayout(null);
+        this.add(this.iniciar);
+        this.add(this.configuracion);
+
+        configuracion.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         configuracion.setForeground(new java.awt.Color(255, 255, 255));
+        configuracion.setText("CONFIGURACION");
         configuracion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         configuracion.setContentAreaFilled(false);
+
+        iniciar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        iniciar.setForeground(new java.awt.Color(255, 255, 255));
+        iniciar.setText("INICIAR");
+        iniciar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        iniciar.setContentAreaFilled(false);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(309, Short.MAX_VALUE)
+                .addComponent(iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(150, 150, 150)
+                .addComponent(configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(373, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
+        );
     }
-    
-    
-    
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
