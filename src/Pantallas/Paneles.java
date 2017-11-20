@@ -6,14 +6,10 @@
 package Pantallas;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-import javax.swing.JButton;
 import javax.swing.*;
 import programa.Coordenada;
 import programa.Tablero;
@@ -38,6 +34,8 @@ public class Paneles extends JPanel implements ActionListener {
     Panel_3 p3 = new Panel_3();
     Panel_4 p4;
     Panel_5 p5= new Panel_5();
+    Panel_Informacion pi= new Panel_Informacion();
+    panel_Configuracion pc= new panel_Configuracion();
     Tablero tablero_local = p3.tablero1;
     Tablero tablero_jugador1 = p32.tablero1;
     Tablero tablero_jugador2 = p31.tablero1;
@@ -46,26 +44,15 @@ public class Paneles extends JPanel implements ActionListener {
     private Maquina maquina;
     private int tipo_juego;
 
-    //Tenemos que saber que modo de juego quiere el usuario
-    //Crear If para eso papu
-//    //Si el modo de juego es vs la computadora va hacer esto
-//    //Creamos los jugadores en este caso, creamos la maquina y el jugador 
-//    //Tenemos que dar la coordenada de la ubicacion, y el tamaño de los cuadrados
-//    Maquina cpu = new Maquina(new Coordenada(20, 100), 15);
-//    //Variable que me permita cambiar el nombre
-//    Jugador jugador = new Jugador("Jugador 1", tablero_local);
-//    //Llamanos al panel a traves del contructor jugador vs cpu
-//    Panel_4 p4 = new Panel_4(jugador, cpu); 
-//    
-//    
-//    //else
+
     public Paneles() {
         super(new BorderLayout());
         add(p1);
 
         p1.iniciar.addActionListener(this);
         p1.configuracion.addActionListener(this);
-
+        p1.informacion.addActionListener(this);
+        
         p2.ONLINE.addActionListener(this);
         p2.VSLOCAL.addActionListener(this);
         p2.VSCOM.addActionListener(this);
@@ -79,7 +66,7 @@ public class Paneles extends JPanel implements ActionListener {
 
         p3.CONTINUAR.addActionListener(this);
 
-        p31.COMENZAR.addActionListener(this);
+        p31.CONTINUAR.addActionListener(this);
 
         p31.poner.addActionListener(this);
         p31.horizontal.addActionListener(this);
@@ -91,6 +78,8 @@ public class Paneles extends JPanel implements ActionListener {
         p32.horizontal.addActionListener(this);
         p32.vertical.addActionListener(this);
 
+        pi.regresar.addActionListener(this);
+        pc.regresar.addActionListener(this);
     }
 
     @Override
@@ -98,6 +87,22 @@ public class Paneles extends JPanel implements ActionListener {
         if (e.getSource().equals(p1.iniciar)) {
             remove(p1);
             add(p2);
+        }
+        if (e.getSource().equals(p1.configuracion)) {
+            remove(p1);
+            add(pc);
+        }
+        if (e.getSource().equals(pc.regresar)) {
+            remove(pc);
+            add(p1);
+        }
+        if (e.getSource().equals(p1.informacion)) {
+            remove(p1);
+            add(pi);
+        }
+        if (e.getSource().equals(pi.regresar)) {
+            remove(pi);
+            add(p1);
         }
         if (e.getSource().equals(p2.REGRESAR)) {
             remove(p2);
@@ -126,7 +131,7 @@ public class Paneles extends JPanel implements ActionListener {
                 add(p31);
             }
         }
-        if (e.getSource().equals(p31.COMENZAR)) {
+        if (e.getSource().equals(p31.CONTINUAR)) {
             if (p31.tablero1.getBarcos_creados() == 5) {
                 remove(p31);
                 this.jugador01 = new Jugador("jugador 1", this.tablero_jugador1);

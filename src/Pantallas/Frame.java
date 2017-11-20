@@ -19,9 +19,9 @@ public class Frame extends JFrame {
 
     private void initUI() {
         add(new Paneles());
-        setSize(730, 480);
+        setSize(730, 478);
         setTitle("pantalla1");
-        
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         

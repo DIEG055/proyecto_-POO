@@ -43,14 +43,14 @@ public class Panel_3_1 extends JPanel implements MouseListener {
 
     JButton REGRESAR = new JButton("REGRESAR");
     JButton poner = new JButton("Poner barco");
-    JButton COMENZAR = new JButton("COMENZAR");
+    JButton CONTINUAR = new JButton("COMENZAR");
     JRadioButton vertical = new JRadioButton("VERTICAL");
     JRadioButton horizontal = new JRadioButton("HORIZONTAL");
     ButtonGroup grupo1 = new ButtonGroup();
-    JLabel texto = new JLabel("SELECCIONE EL RECUADRO DONDE QUIERE UBICAR EL BARCO");
+
 
     public Panel_3_1() {
-        this.add(this.COMENZAR);
+        this.add(this.CONTINUAR);
         this.add(this.vertical);
         this.add(this.horizontal);
         this.add(this.poner);
@@ -63,37 +63,33 @@ public class Panel_3_1 extends JPanel implements MouseListener {
         t[3] = 3;
         t[4] = 2;
 
-                COMENZAR.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        COMENZAR.setForeground(new java.awt.Color(255, 255, 255));
-        COMENZAR.setText("CONTINUAR");
-        COMENZAR.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        COMENZAR.setContentAreaFilled(false);
-
-        poner.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+         poner.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         poner.setForeground(new java.awt.Color(255, 255, 255));
-        poner.setText("Ubicar barco");
+        poner.setText("UBICAR BARCO");
         poner.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         poner.setContentAreaFilled(false);
 
-        REGRESAR.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        REGRESAR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         REGRESAR.setForeground(new java.awt.Color(255, 255, 255));
         REGRESAR.setText("REGRESAR");
         REGRESAR.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         REGRESAR.setContentAreaFilled(false);
 
-        horizontal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        horizontal.setForeground(new java.awt.Color(255, 255, 255));
-        horizontal.setText("HORIZONTAL");
-        horizontal.setContentAreaFilled(false);
+        CONTINUAR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CONTINUAR.setForeground(new java.awt.Color(255, 255, 255));
+        CONTINUAR.setText("CONTINUAR");
+        CONTINUAR.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        CONTINUAR.setContentAreaFilled(false);
 
         vertical.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         vertical.setForeground(new java.awt.Color(255, 255, 255));
         vertical.setText("VERTICAL");
         vertical.setContentAreaFilled(false);
 
-        texto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        texto.setForeground(new java.awt.Color(255, 255, 255));
-        texto.setText("UBIQUE LOS BARCOS, Y CONFIRME SU UBICACION");
+        horizontal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        horizontal.setForeground(new java.awt.Color(255, 255, 255));
+        horizontal.setText("HORIZONTAL");
+        horizontal.setContentAreaFilled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,41 +97,42 @@ public class Panel_3_1 extends JPanel implements MouseListener {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(REGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(COMENZAR, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(texto, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(horizontal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(vertical, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 382, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(poner, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(REGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(poner, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(horizontal)
+                    .addComponent(vertical))
+                .addGap(0, 424, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(613, Short.MAX_VALUE)
+                    .addComponent(CONTINUAR, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(COMENZAR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(REGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(texto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(vertical, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(horizontal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(poner, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
+                .addGap(20, 20, 20)
+                .addComponent(REGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(vertical)
+                        .addGap(22, 22, 22)
+                        .addComponent(horizontal)
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(poner, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(CONTINUAR, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(428, Short.MAX_VALUE)))
         );
         
     }
@@ -149,7 +146,7 @@ public class Panel_3_1 extends JPanel implements MouseListener {
 
     private void dibujarEscenario(Graphics g) {
         Graphics2D c = (Graphics2D) g;
-        Image fondo = loadImage("fondo_partida.jpg");
+        Image fondo = loadImage("eleccionbarcos.jpg");
         c.drawImage(fondo, 0, 0, null);
         c.setColor(Color.WHITE);
         for (int i = 0; i < 10; i++) {
@@ -171,7 +168,7 @@ public class Panel_3_1 extends JPanel implements MouseListener {
 
     private void pinta_provicional(Graphics g) {
         Graphics2D c = (Graphics2D) g;
-        c.setColor(Color.ORANGE);
+        c.setColor(Color.GRAY);
         if (!(this.x_aux == 0) && prueba) {
             try {
                 for (int i = 0; i < this.t[tam]; i++) {
