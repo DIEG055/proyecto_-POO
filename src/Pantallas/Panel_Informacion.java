@@ -48,7 +48,7 @@ public class Panel_Informacion extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Image fondo = loadImage("informaciond.jpg");
+        Image fondo = loadImage("src\\imagenes_fondos\\informaciond.jpg");
         g.drawImage(fondo, 0, 0, null);
     }
 

@@ -34,6 +34,5 @@ public class MainPruebas {
 //      int coordenadaX = ((int) (Math.random() * 10 + 1)) - 1;
 //      Tablero tab_jugador=jugador01.getTablero;
 //      Cuadro[][] c_barcos=tab_jugador.getCuadrados();
-        }
     }
-
+}

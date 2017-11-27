@@ -20,13 +20,14 @@ public class Panel_5 extends JPanel {
 
     JButton REGRESAR = new JButton("REGRESAR");
     JLabel texto = new JLabel("PROXIMAMENTE!!!");
+
     public Panel_5() {
         this.add(this.REGRESAR);
         this.add(this.texto);
-        texto.setSize(300,200);
-        texto.setLocation(300,300);
-         texto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        texto.setForeground(new java.awt.Color(255, 255, 255));       
+        texto.setSize(300, 200);
+        texto.setLocation(300, 300);
+        texto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        texto.setForeground(new java.awt.Color(255, 255, 255));
         REGRESAR.setSize(200, 100);
         REGRESAR.setLocation(300, 300);
         REGRESAR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -37,7 +38,7 @@ public class Panel_5 extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Image fondo = loadImage("panel_online.png");
+        Image fondo = loadImage("src\\imagenes_fondos\\panel_online.png");
         g.drawImage(fondo, 0, 0, null);
     }
 

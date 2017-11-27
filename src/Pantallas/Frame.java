@@ -12,7 +12,8 @@ import javax.swing.JFrame;
  * @author juanm
  */
 public class Frame extends JFrame {
-        public Frame() {
+
+    public Frame() {
 
         initUI();
     }
@@ -24,12 +25,12 @@ public class Frame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        
-    }    
-    
+
+    }
+
     public static void main(String[] args) {
         Frame ex = new Frame();
         ex.setVisible(true);
-       
+
     }
 }

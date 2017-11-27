@@ -15,19 +15,17 @@ import java.awt.event.MouseListener;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import programa.Coordenada;
-import programa.Tablero;
 import programa.Cuadro;
+import programa.Tablero;
 
 /**
  *
  * @author juanm
  */
-public class Panel_3 extends JPanel implements MouseListener {
+public class Panel_Ubi_Barcos_Jug1 extends JPanel implements MouseListener {
 
     private int xref = 30;
     private int yref = 100;
@@ -44,26 +42,24 @@ public class Panel_3 extends JPanel implements MouseListener {
 
     JButton REGRESAR = new JButton("REGRESAR");
     JButton poner = new JButton("Poner barco");
-    JButton CONTINUAR = new JButton("COMENZAR");
+    JButton CONTINUAR = new JButton("CONTINUAR");
     JRadioButton vertical = new JRadioButton("VERTICAL");
     JRadioButton horizontal = new JRadioButton("HORIZONTAL");
     ButtonGroup grupo1 = new ButtonGroup();
 
-    public Panel_3() {
-        this.add(this.REGRESAR);
+    public Panel_Ubi_Barcos_Jug1() {
         this.add(this.vertical);
         this.add(this.horizontal);
         this.add(this.poner);
         this.add(this.CONTINUAR);
-        grupo1.add(vertical);
-        grupo1.add(horizontal);
+        addMouseListener(this);
         t[0] = 5;
         t[1] = 4;
         t[2] = 3;
         t[3] = 3;
         t[4] = 2;
-        addMouseListener(this);
-
+        grupo1.add(vertical);
+        grupo1.add(horizontal);
         poner.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         poner.setForeground(new java.awt.Color(255, 255, 255));
         poner.setText("UBICAR BARCO");
@@ -147,7 +143,7 @@ public class Panel_3 extends JPanel implements MouseListener {
 
     private void dibujarEscenario(Graphics g) {
         Graphics2D c = (Graphics2D) g;
-        Image fondo = loadImage("eleccionbarcos.jpg");
+        Image fondo = loadImage("src\\imagenes_fondos\\eleccionbarcos.jpg");
         c.drawImage(fondo, 0, 0, null);
         c.setColor(Color.WHITE);
         for (int i = 0; i < 10; i++) {

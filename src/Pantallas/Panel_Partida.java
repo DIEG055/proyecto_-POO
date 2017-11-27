@@ -25,7 +25,7 @@ import programa.Tablero;
  *
  * @author juanm
  */
-public class Panel_4 extends JPanel implements MouseListener {
+public class Panel_Partida extends JPanel implements MouseListener {
 
     private Jugador jugador01;
     private Jugador jugador02;
@@ -38,7 +38,7 @@ public class Panel_4 extends JPanel implements MouseListener {
 
     JButton INICIO = new JButton("VOLVER INICIO");
 
-    public Panel_4(Jugador jugador, Maquina maquina) {
+    public Panel_Partida(Jugador jugador, Maquina maquina) {
         this.add(this.INICIO);
         INICIO.setSize(200, 100);
         INICIO.setLocation(300, 300);
@@ -63,7 +63,7 @@ public class Panel_4 extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
-    public Panel_4(Jugador jugador01, Jugador jugador02) {
+    public Panel_Partida(Jugador jugador01, Jugador jugador02) {
         this.jugador01 = jugador01;
         this.jugador02 = jugador02;
         this.maquina = null;
@@ -134,20 +134,20 @@ public class Panel_4 extends JPanel implements MouseListener {
 
     private void dibujarEscenario(Graphics g) {
         Graphics2D c = (Graphics2D) g;
-        Image fondo = loadImage("eleccion barcos.jpg");
+        Image fondo = loadImage("src\\imagenes_fondos\\eleccion barcos.jpg");
         c.drawImage(fondo, 0, 0, null);
         c.setColor(Color.WHITE);
-        c.drawString("BARCOS CON VIDA JUGADOR 1: "+this.jugador01.getTablero().getBarcosVivos(),this.xref1, this.yref1-10);
-        if(modo){
-        c.drawString("BARCOS CON VIDA MAQUINA "+this.maquina.getTablero().getBarcosVivos(),this.xref1, this.yref1-10);
-        }else{
-        c.drawString("BARCOS CON VIDA JUGADOR 2: "+this.jugador01.getTablero().getBarcosVivos(),this.xref2, this.yref2-10);
+        c.drawString("BARCOS CON VIDA JUGADOR 1: " + this.jugador01.getTablero().getBarcosVivos(), this.xref1, this.yref1 - 10);
+        if (modo) {
+            c.drawString("BARCOS CON VIDA MAQUINA " + this.maquina.getTablero().getBarcosVivos(), this.xref1, this.yref1 - 10);
+        } else {
+            c.drawString("BARCOS CON VIDA JUGADOR 2: " + this.jugador01.getTablero().getBarcosVivos(), this.xref2, this.yref2 - 10);
         }
-        
-        if(turno){
-        c.drawString("TURNO JUGADOR 1 ",300, 430);
-        }else{
-        c.drawString("TURNO JUGADOR 2 ",300, 430);
+
+        if (turno) {
+            c.drawString("TURNO JUGADOR 1 ", 300, 430);
+        } else {
+            c.drawString("TURNO JUGADOR 2 ", 300, 430);
         }
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -343,6 +343,7 @@ public class Panel_4 extends JPanel implements MouseListener {
             }//ELSE MODO
         }//IF ESTADO
         else {
+            
             System.out.println("FIN DEL JUEGO CHAVAL");
         }//ELSE ESTADO
     }
@@ -366,5 +367,4 @@ public class Panel_4 extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
-
 }
