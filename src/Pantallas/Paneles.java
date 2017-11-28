@@ -147,11 +147,11 @@ public class Paneles extends JPanel implements ActionListener {
 //            } catch (IOException ex) {
 //                System.out.println("error en el servidor");
 //            }
-   //     }
+        //     }
 //        if (e.getSource().equals(p5.INVITADO)) {
 //            remove(p5);
 //            add(p31);
-            //  String direccion = JOptionPane.showInputDialog(null, "ingrese la direccion IP");
+        //  String direccion = JOptionPane.showInputDialog(null, "ingrese la direccion IP");
 //            try {
 //                this.cliente = new Socket("LocalHost", 8000);
 //                fromServervisitante = new DataInputStream(cliente.getInputStream());
@@ -159,7 +159,7 @@ public class Paneles extends JPanel implements ActionListener {
 //            } catch (IOException ex) {
 //                System.out.println("Problemas en la conexion");
 //            }
-    //    }
+        //    }
         if (e.getSource().equals(p2.VSLOCAL)) {
             remove(p2);
             add(p32);
@@ -200,42 +200,45 @@ public class Paneles extends JPanel implements ActionListener {
 //                    add(p4);
 //                }
 //            }
-
-            if (e.getSource().equals(p2.VSCOM)) {
-                remove(p2);
-                add(p3);
-                this.tipo_juego = 3;
-            }
-            if (e.getSource().equals(p3.REGRESAR)) {
-                remove(p3);
-                add(p2);
-            }
-            if (e.getSource().equals(p3.poner)) {
-                p3.poner();
-            }
-            if (e.getSource().equals(p31.poner)) {
-                p31.poner();
-            }
-            if (e.getSource().equals(p3.CONTINUAR)) {
-                if (p3.tablero1.getbarcos_creados() == 5) {
-                    remove(p3);
-                    this.jugador01 = new Jugador("jugador 1", this.tablero_local);
-                    this.maquina = new Maquina(new Coordenada(xref1 + 350, yref1), this.tam_cuadrado);
-                    p4 = new Panel_Partida(this.jugador01, this.maquina);
-                    add(p4);
-                }
-                if (e.getSource().equals(p4.INICIO)) {
-                    remove(p4);
-                    add(p1);
-                }
-            }
-
         }
-        repaint();
-        revalidate();
-    }
+        if (e.getSource().equals(p2.VSCOM)) {
+            remove(p2);
+            add(p3);
+            this.tipo_juego = 3;
+            System.out.println("Pantallas.Paneles.actionPerformed()");
+        }
+        if (e.getSource().equals(p3.REGRESAR)) {
+            remove(p3);
+            add(p2);
+        }
+        if (e.getSource().equals(p3.poner)) {
+            p3.poner();
+        }
+        if (e.getSource().equals(p31.poner)) {
+            p31.poner();
+        }
+        if (e.getSource().equals(p3.CONTINUAR)) {
+            if (p3.tablero1.getbarcos_creados() == 5) {
+                remove(p3);
+                this.jugador01 = new Jugador("jugador 1", this.tablero_local);
+                this.maquina = new Maquina(new Coordenada(xref1 + 350, yref1), this.tam_cuadrado);
+                p4 = new Panel_Partida(this.jugador01, this.maquina);
+                add(p4);
+            }
+            if (e.getSource().equals(p4.INICIO)) {
+                remove(p4);
+                add(p1);
+            }
+        }
 
-    public void paintComponent(Graphics g) {
+    
+
+    repaint();
+
+    revalidate();
+}
+
+public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Image fondo = loadImage("panel_online.png");
         g.drawImage(fondo, 0, 0, null);
