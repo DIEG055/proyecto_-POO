@@ -88,7 +88,15 @@ public class Maquina {
              
          }
      } //literalmente seria dificultad dios pero no se me ocurre otra forma
-
+        
+        
+    public Coordenada ataque(){
+        int coordenadaY = ((int) (Math.random() * 10 + 1)) - 1;
+        int coordenadaX = ((int) (Math.random() * 10 + 1)) - 1;
+        return new Coordenada(coordenadaX, coordenadaY);
+    }
+    
+    
     public Barco generarBarco(Barco[] barcosGenerados, int tamano, int numeroBarcos, int tamano02) {
         Boolean barcoCreado = false;
         Boolean orientacion = (Math.random() > 0.5);

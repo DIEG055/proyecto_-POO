@@ -5,6 +5,7 @@
  */
 package Pantallas;
 
+import com.sun.org.apache.bcel.internal.classfile.Code;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -339,9 +340,16 @@ public class Panel_Partida extends JPanel implements MouseListener {
                         this.setCuadroGolpeado(p, "Maquina");
                         this.actualizarEstadoJuego();
                         repaint();
-                        
-                        
                     }
+                    
+                    Coordenada aux = maquina.ataque();
+                    int pointX= (aux.getX() * this.tam_cuadrado) + this.jugador01.getTablero().getUbicacionPanel().getX();
+                    int pointY= (aux.getY() * this.tam_cuadrado) + this.jugador01.getTablero().getUbicacionPanel().getY();
+                    Point golpeMaquina = new Point(pointX, pointY);
+                    this.setCuadroGolpeado(golpeMaquina, "Jugador01");
+                    this.actualizarEstadoJuego();
+                    repaint();
+                    
               //  }
             }//If modo
             else {
