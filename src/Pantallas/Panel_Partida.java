@@ -25,6 +25,7 @@ import programa.Cuadro;
 import programa.Jugador;
 import programa.Maquina;
 import programa.Tablero;
+import programa.musica1;
 
 /**
  *
@@ -132,6 +133,9 @@ public class Panel_Partida extends JPanel implements MouseListener {
                         if (maquina.getTablero().getCuadrados()[i][j].isPer_barco()) {
                             c.setColor(new Color(0,128,128));
                             c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
+                            String m="Torpedo Impact-SoundBible.com-765913562.wav";
+                            musica1 fondo=new musica1(m);
+                            fondo.run();
                         } else {
                             c.setColor(new Color(0,206,209));
                             c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
@@ -143,6 +147,9 @@ public class Panel_Partida extends JPanel implements MouseListener {
                         Coordenada aux = jugador02.getTablero().getCuadrados()[i][j].getCoordenada();
                         if (jugador02.getTablero().getCuadrados()[i][j].isPer_barco()) {
                             c.setColor(new Color(0,128,128));
+                            String m="Torpedo Impact-SoundBible.com-765913562.wav";
+                            musica1 fondo=new musica1(m);
+                            fondo.run();
                         } else {
                             c.setColor(new Color(0,206,209));
                         }
@@ -153,6 +160,9 @@ public class Panel_Partida extends JPanel implements MouseListener {
                     Coordenada aux = jugador01.getTablero().getCuadrados()[i][j].getCoordenada();
                     if (jugador01.getTablero().getCuadrados()[i][j].isPer_barco()) {
                         c.setColor(new Color(0,128,128));
+                        String m="Torpedo Impact-SoundBible.com-765913562.wav";
+                            musica1 fondo=new musica1(m);
+                            fondo.run();
                     } else {
                         c.setColor(new Color(0,206,209));
                     }
