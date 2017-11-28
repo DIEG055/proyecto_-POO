@@ -38,6 +38,56 @@ public class Maquina {
 
         return barcosMaquina;
     }
+        public void ataque_maquina(int cooordenadaX,int coordenadaY,Cuadro[][] c_barcos, boolean ac){
+      if(c_barcos[cooordenadaX][coordenadaY].isPer_barco()){
+             //pasa turno 
+             if(ac){
+                 int eleccion=((int) (Math.random() * 4 )+1);
+                if(eleccion==1){
+                    ataque_maquina(cooordenadaX+1, coordenadaY, c_barcos,false);
+                }
+                if(eleccion==2){
+                    ataque_maquina(cooordenadaX-1, coordenadaY, c_barcos,false);
+                }
+                if(eleccion==3){
+                    ataque_maquina(cooordenadaX, coordenadaY+1, c_barcos,false);
+                }
+                if(eleccion==4){
+                    ataque_maquina(cooordenadaX, coordenadaY-1, c_barcos,false);
+                }
+             }else{
+                if(c_barcos[cooordenadaX+1][coordenadaY].isPer_barco()){
+                    ataque_maquina(cooordenadaX+1, coordenadaY, c_barcos,false);
+                }
+                if(c_barcos[cooordenadaX-1][coordenadaY].isPer_barco()){
+                    ataque_maquina(cooordenadaX-1, coordenadaY, c_barcos,false);
+                }
+                if(c_barcos[cooordenadaX][coordenadaY+1].isPer_barco()){
+                    ataque_maquina(cooordenadaX, coordenadaY+1, c_barcos,false);
+                }
+                if(c_barcos[cooordenadaX][coordenadaY-1].isPer_barco()){
+                    ataque_maquina(cooordenadaX, coordenadaY-1, c_barcos,false);
+                }
+                if(c_barcos[cooordenadaX+1][coordenadaY+1].isPer_barco()){
+                    ataque_maquina(cooordenadaX+1, coordenadaY, c_barcos,false);
+                }
+                if(c_barcos[cooordenadaX-1][coordenadaY-1].isPer_barco()){
+                    ataque_maquina(cooordenadaX-1, coordenadaY, c_barcos,false);
+                }
+                if(c_barcos[cooordenadaX-1][coordenadaY+1].isPer_barco()){
+                    ataque_maquina(cooordenadaX, coordenadaY+1, c_barcos,false);
+                }
+                if(c_barcos[cooordenadaX+1][coordenadaY-1].isPer_barco()){
+                    ataque_maquina(cooordenadaX, coordenadaY-1, c_barcos,false);
+                }
+             }
+         }else{
+             coordenadaY = ((int) (Math.random() * 10 + 1)) - 1;
+             cooordenadaX = ((int) (Math.random() * 10 + 1)) - 1;
+             ataque_maquina(cooordenadaX, coordenadaY, c_barcos,true);
+             
+         }
+     } //literalmente seria dificultad dios pero no se me ocurre otra forma
 
     public Barco generarBarco(Barco[] barcosGenerados, int tamano, int numeroBarcos, int tamano02) {
         Boolean barcoCreado = false;
