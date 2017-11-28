@@ -5,8 +5,8 @@
  */
 package Pantallas;
 
+import com.sun.corba.se.spi.activation.Server;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,6 @@ import programa.Coordenada;
 import programa.Tablero;
 import programa.Maquina;
 import programa.Jugador;
-import programa.musica1;
 
 /**
  *
@@ -31,21 +30,29 @@ import programa.musica1;
  */
 public class Paneles extends JPanel implements ActionListener {
 
-    private int xref1, yref1, tam_cuadrado, tipo_juego;
-    private boolean online, local;
-    Panel_Inicial p1;
-    Panel_Eleccion p2;
-    Panel_Ubi_Barcos_Jug2 p31;
-    Panel_Ubi_Barcos_Jug1 p32;
-    Panel_Ubi_barcos_vsPc p3;
+    private int xref1 = 30;
+    private int yref1 = 100;
+    private int tam_cuadrado = 30;
+    private boolean online;
+    private boolean local;
+//    private Coordenada ct1= new Coordenada(this.xref1,this.yref1);  
+
+    Panel_Inicial p1 = new Panel_Inicial();
+    Panel_Eleccion p2 = new Panel_Eleccion();
+    Panel_Ubi_Barcos_Jug2 p31 = new Panel_Ubi_Barcos_Jug2();
+    Panel_Ubi_Barcos_Jug1 p32 = new Panel_Ubi_Barcos_Jug1();
+    Panel_Ubi_barcos_vsPc p3 = new Panel_Ubi_barcos_vsPc();
     Panel_Partida p4;
-    Panel_Online p5;
-    Panel_Informacion pi;
-    panel_Configuracion pc;
-    Tablero tablero_jugador2, tablero_jugador1, tablero_local;
-    private Jugador jugador01, jugador02;
+    Panel_Online p5 = new Panel_Online();
+    Panel_Informacion pi = new Panel_Informacion();
+    panel_Configuracion pc = new panel_Configuracion();
+    Tablero tablero_local = p3.tablero1;
+    Tablero tablero_jugador1 = p32.tablero1;
+    Tablero tablero_jugador2 = p31.tablero1;
+    private Jugador jugador01;
+    private Jugador jugador02;
     private Maquina maquina;
-    Color color = new Color(128, 128, 0);
+    private int tipo_juego;
 //    private ServerSocket servidor;
 //    private Socket cliente;
 //    private DataOutputStream toServerlocal,toServervisitante;
@@ -53,20 +60,6 @@ public class Paneles extends JPanel implements ActionListener {
 
     public Paneles() {
         super(new BorderLayout());
-        String m="Feel Good Inc. [8 Bit Tribute to Gorillaz] - 8 Bit Universe (online-audio-converter.com).wav";
-        musica1 fondo=new musica1(m);
-        fondo.run();
-        this.p1 = new Panel_Inicial();
-        this.p2 = new Panel_Eleccion();
-        this.p31 = new Panel_Ubi_Barcos_Jug2();
-        this.p32 = new Panel_Ubi_Barcos_Jug1();
-        this.p3 = new Panel_Ubi_barcos_vsPc();
-        this.p5 = new Panel_Online();
-        this.pi = new Panel_Informacion();
-        this.pc = new panel_Configuracion();
-        this.tablero_local = p3.tablero1;
-        this.tablero_jugador1 = p32.tablero1;
-        this.tablero_jugador2 = p31.tablero1;
         add(p1);
 
         p1.iniciar.addActionListener(this);
@@ -143,6 +136,30 @@ public class Paneles extends JPanel implements ActionListener {
             add(p2);
             this.online = false;
         }
+//        if (e.getSource().equals(p5.LOCAL)) {
+//            remove(p5);
+//            add(p32);
+//            try {
+//                this.servidor = new ServerSocket(8000);
+//                this.cliente = this.servidor.accept();
+//                fromServerlocal = new DataInputStream(cliente.getInputStream());
+//                toServerlocal = new DataOutputStream(cliente.getOutputStream());
+//            } catch (IOException ex) {
+//                System.out.println("error en el servidor");
+//            }
+        //     }
+//        if (e.getSource().equals(p5.INVITADO)) {
+//            remove(p5);
+//            add(p31);
+        //  String direccion = JOptionPane.showInputDialog(null, "ingrese la direccion IP");
+//            try {
+//                this.cliente = new Socket("LocalHost", 8000);
+//                fromServervisitante = new DataInputStream(cliente.getInputStream());
+//                toServervisitante = new DataOutputStream(cliente.getOutputStream());
+//            } catch (IOException ex) {
+//                System.out.println("Problemas en la conexion");
+//            }
+        //    }
         if (e.getSource().equals(p2.VSLOCAL)) {
             remove(p2);
             add(p32);
@@ -157,7 +174,14 @@ public class Paneles extends JPanel implements ActionListener {
                 remove(p32);
                 add(p31);
             }
-
+//            } else {
+//                if (p32.tablero1.getBarcos_creados() == 5) {
+//                    remove(p32);
+//                    this.jugador01 = new Jugador("jugador 1", this.tablero_jugador1);
+//                    p4 = new Panel_Partida(this.jugador01, false,this.fromServerlocal,this.toServerlocal);
+//                    add(p4);
+//                }
+//            }
         }
         if (e.getSource().equals(p31.CONTINUAR)) {
             //  if (!online) {
@@ -168,11 +192,20 @@ public class Paneles extends JPanel implements ActionListener {
                 p4 = new Panel_Partida(this.jugador01, this.jugador02);
                 add(p4);
             }
+//            } else {
+//                if (p31.tablero1.getBarcos_creados() == 5) {
+//                    remove(p31);
+//                    this.jugador02 = new Jugador("jugador 2", this.tablero_jugador2);
+//                    p4 = new Panel_Partida(this.jugador02, false,this.fromServervisitante,this.toServervisitante);
+//                    add(p4);
+//                }
+//            }
         }
         if (e.getSource().equals(p2.VSCOM)) {
             remove(p2);
             add(p3);
             this.tipo_juego = 3;
+            System.out.println("Pantallas.Paneles.actionPerformed()");
         }
         if (e.getSource().equals(p3.REGRESAR)) {
             remove(p3);
@@ -198,13 +231,14 @@ public class Paneles extends JPanel implements ActionListener {
             }
         }
 
-        repaint();
+    
 
-        revalidate();
-    }
+    repaint();
 
-    @Override
-    public void paintComponent(Graphics g) {
+    revalidate();
+}
+
+public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Image fondo = loadImage("panel_online.png");
         g.drawImage(fondo, 0, 0, null);

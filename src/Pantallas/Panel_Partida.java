@@ -43,7 +43,7 @@ public class Panel_Partida extends JPanel implements MouseListener {
     JButton INICIO;
 
     public Panel_Partida(Jugador jugador, Maquina maquina) {
-        this.add(this.INICIO);
+//        this.add(this.INICIO);
         this.online = false;
         this.jugador01 = jugador;
         this.jugador02 = null;
@@ -339,6 +339,8 @@ public class Panel_Partida extends JPanel implements MouseListener {
                         this.setCuadroGolpeado(p, "Maquina");
                         this.actualizarEstadoJuego();
                         repaint();
+                        
+                        
                     }
               //  }
             }//If modo
