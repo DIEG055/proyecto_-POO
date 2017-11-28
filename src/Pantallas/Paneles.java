@@ -5,7 +5,6 @@
  */
 package Pantallas;
 
-import com.sun.corba.se.spi.activation.Server;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -30,29 +29,20 @@ import programa.Jugador;
  */
 public class Paneles extends JPanel implements ActionListener {
 
-    private int xref1 = 30;
-    private int yref1 = 100;
-    private int tam_cuadrado = 30;
-    private boolean online;
-    private boolean local;
-//    private Coordenada ct1= new Coordenada(this.xref1,this.yref1);  
-
-    Panel_Inicial p1 = new Panel_Inicial();
-    Panel_Eleccion p2 = new Panel_Eleccion();
-    Panel_Ubi_Barcos_Jug2 p31 = new Panel_Ubi_Barcos_Jug2();
-    Panel_Ubi_Barcos_Jug1 p32 = new Panel_Ubi_Barcos_Jug1();
-    Panel_Ubi_barcos_vsPc p3 = new Panel_Ubi_barcos_vsPc();
+    private int xref1, yref1, tam_cuadrado, tipo_juego;
+    private boolean online, local;
+    Panel_Inicial p1;
+    Panel_Eleccion p2;
+    Panel_Ubi_Barcos_Jug2 p31;
+    Panel_Ubi_Barcos_Jug1 p32;
+    Panel_Ubi_barcos_vsPc p3;
     Panel_Partida p4;
-    Panel_Online p5 = new Panel_Online();
-    Panel_Informacion pi = new Panel_Informacion();
-    panel_Configuracion pc = new panel_Configuracion();
-    Tablero tablero_local = p3.tablero1;
-    Tablero tablero_jugador1 = p32.tablero1;
-    Tablero tablero_jugador2 = p31.tablero1;
-    private Jugador jugador01;
-    private Jugador jugador02;
+    Panel_Online p5;
+    Panel_Informacion pi;
+    panel_Configuracion pc;
+    Tablero tablero_jugador2, tablero_jugador1, tablero_local;
+    private Jugador jugador01, jugador02;
     private Maquina maquina;
-    private int tipo_juego;
 //    private ServerSocket servidor;
 //    private Socket cliente;
 //    private DataOutputStream toServerlocal,toServervisitante;
@@ -60,6 +50,17 @@ public class Paneles extends JPanel implements ActionListener {
 
     public Paneles() {
         super(new BorderLayout());
+        this.p1 = new Panel_Inicial();
+        this.p2 = new Panel_Eleccion();
+        this.p31 = new Panel_Ubi_Barcos_Jug2();
+        this.p32 = new Panel_Ubi_Barcos_Jug1();
+        this.p3 = new Panel_Ubi_barcos_vsPc();
+        this.p5 = new Panel_Online();
+        this.pi = new Panel_Informacion();
+        this.pc = new panel_Configuracion();
+        this.tablero_local = p3.tablero1;
+        this.tablero_jugador1 = p32.tablero1;
+        this.tablero_jugador2 = p31.tablero1;
         add(p1);
 
         p1.iniciar.addActionListener(this);
@@ -205,7 +206,6 @@ public class Paneles extends JPanel implements ActionListener {
             remove(p2);
             add(p3);
             this.tipo_juego = 3;
-            System.out.println("Pantallas.Paneles.actionPerformed()");
         }
         if (e.getSource().equals(p3.REGRESAR)) {
             remove(p3);
@@ -231,14 +231,12 @@ public class Paneles extends JPanel implements ActionListener {
             }
         }
 
-    
+        repaint();
 
-    repaint();
+        revalidate();
+    }
 
-    revalidate();
-}
-
-public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Image fondo = loadImage("panel_online.png");
         g.drawImage(fondo, 0, 0, null);

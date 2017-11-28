@@ -22,7 +22,7 @@ public class Panel_Online extends JPanel {
     JButton INVITADO;
 
     public Panel_Online() {
-        this.setLayout(null);
+
         this.INVITADO = new JButton();
         this.LOCAL = new JButton();
         this.REGRESAR = new JButton();

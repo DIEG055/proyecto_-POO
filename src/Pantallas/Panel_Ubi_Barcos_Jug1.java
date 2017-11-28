@@ -27,27 +27,37 @@ import programa.Tablero;
  */
 public class Panel_Ubi_Barcos_Jug1 extends JPanel implements MouseListener {
 
-    private int xref = 30;
-    private int yref = 100;
-    private int tam_cuadrado = 30;
-    private boolean orientacion = true;
-    private int x_aux, y_aux;
-    private int tam = 0;
+    private int xref, yref, tam_cuadrado, x_aux, y_aux, tam;
+    private boolean orientacion, puesto, prueba;
     private Coordenada c;
-    private int t[] = new int[5];
-    private boolean puesto = false;
-    private Coordenada ct = new Coordenada(this.xref, this.yref);
-    Tablero tablero1 = new Tablero(ct, this.tam_cuadrado);
-    private boolean prueba = true;
+    private int t[];
+    private Coordenada ct;
+    Tablero tablero1;
 
-    JButton REGRESAR = new JButton("REGRESAR");
-    JButton poner = new JButton("Poner barco");
-    JButton CONTINUAR = new JButton("CONTINUAR");
-    JRadioButton vertical = new JRadioButton("VERTICAL");
-    JRadioButton horizontal = new JRadioButton("HORIZONTAL");
-    ButtonGroup grupo1 = new ButtonGroup();
+    JButton REGRESAR;
+    JButton poner;
+    JButton CONTINUAR;
+    JRadioButton vertical;
+    JRadioButton horizontal;
+    ButtonGroup grupo1;
 
     public Panel_Ubi_Barcos_Jug1() {
+        this.xref = 30;
+        this.yref = 100;
+        this.tam_cuadrado = 30;
+        this.orientacion = true;
+        this.tam = 0;
+        this.t = new int[5];
+        this.puesto = false;
+        this.ct = new Coordenada(this.xref, this.yref);
+        this.tablero1 = new Tablero(ct, this.tam_cuadrado);
+        this.prueba = true;
+        this.REGRESAR = new JButton();
+        this.poner = new JButton();
+        this.CONTINUAR = new JButton();
+        this.vertical = new JRadioButton();
+        this.horizontal = new JRadioButton();
+        this.grupo1 = new ButtonGroup();
         this.add(this.vertical);
         this.add(this.horizontal);
         this.add(this.poner);

@@ -17,12 +17,17 @@ import javax.swing.JPanel;
  */
 public class Panel_Eleccion extends JPanel {
 
-    JButton VSCOM = new JButton("PARTIDA VS COM");
-    JButton VSLOCAL = new JButton("PARTIDA LOCAL");
-    JButton ONLINE = new JButton("PARTIDA ONLINE");
-    JButton REGRESAR = new JButton("REGRESAR");
+    JButton VSCOM;
+    JButton VSLOCAL;
+    JButton ONLINE;
+    JButton REGRESAR;
 
     public Panel_Eleccion() {
+        this.VSCOM = new JButton("PARTIDA VS COM");
+        this.VSLOCAL = new JButton("PARTIDA LOCAL");
+        this.ONLINE = new JButton("PARTIDA ONLINE");
+        this.REGRESAR = new JButton("REGRESAR");
+
         this.add(this.VSCOM);
         this.add(this.REGRESAR);
         this.add(this.VSLOCAL);

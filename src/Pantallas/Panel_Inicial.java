@@ -17,12 +17,15 @@ import javax.swing.JPanel;
  */
 public class Panel_Inicial extends JPanel {
 
-    JButton iniciar = new JButton("INICIAR");
+    JButton iniciar = new JButton();
     JButton configuracion = new JButton();
     JButton informacion = new JButton();
 
     public Panel_Inicial() {
-        this.setLayout(null);
+
+        this.iniciar = new JButton();
+        this.configuracion = new JButton();
+        this.informacion = new JButton();
         this.add(this.iniciar);
         this.add(this.configuracion);
         this.add(this.informacion);

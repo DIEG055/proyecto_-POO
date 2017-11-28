@@ -17,10 +17,10 @@ import javax.swing.JPanel;
  */
 public class Panel_Informacion extends JPanel {
 
-    JButton regresar = new JButton();
+    JButton regresar;
 
     public Panel_Informacion() {
-        this.setLayout(null);
+        this.regresar= new JButton();
         regresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         regresar.setForeground(new java.awt.Color(255, 255, 255));
         regresar.setText("REGRESAR");

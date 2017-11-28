@@ -32,30 +32,17 @@ import programa.Tablero;
  */
 public class Panel_Partida extends JPanel implements MouseListener {
 
-    private Jugador jugador01;
-    private Jugador jugador02;
+    private Jugador jugador01,jugador02;
     private Maquina maquina;
-    private boolean turno; // true para jugador 1, false para jugador2 o la maquina
-    private boolean estado; //True si aun se puede jugar, false si no se puede jugar.
-    private boolean modo; //True para jugador vs maquina, false para jugador 01 vs jugador 02
-    private boolean online;
+    private boolean turno,estado,modo,online; 
     int xref1, xref2, yref1, yref2, tam_cuadrado;
     private Coordenada c1, c2;
-    private DataOutputStream toServerlocal;
-    private DataInputStream fromServerlocal;
-    private DataOutputStream toServervisitante;
-    private DataInputStream fromServervisitante;
-
-    JButton INICIO = new JButton("VOLVER INICIO");
+    private DataOutputStream toServerlocal,toServervisitante;
+    private DataInputStream fromServerlocal,fromServervisitante;
+    JButton INICIO;
 
     public Panel_Partida(Jugador jugador, Maquina maquina) {
         this.add(this.INICIO);
-        INICIO.setSize(200, 100);
-        INICIO.setLocation(300, 300);
-        INICIO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        INICIO.setForeground(new java.awt.Color(255, 255, 255));
-        INICIO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        INICIO.setContentAreaFilled(false);
         this.online = false;
         this.jugador01 = jugador;
         this.jugador02 = null;
