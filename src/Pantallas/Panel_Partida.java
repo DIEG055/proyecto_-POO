@@ -12,6 +12,11 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -33,8 +38,13 @@ public class Panel_Partida extends JPanel implements MouseListener {
     private boolean turno; // true para jugador 1, false para jugador2 o la maquina
     private boolean estado; //True si aun se puede jugar, false si no se puede jugar.
     private boolean modo; //True para jugador vs maquina, false para jugador 01 vs jugador 02
+    private boolean online;
     int xref1, xref2, yref1, yref2, tam_cuadrado;
     private Coordenada c1, c2;
+    private DataOutputStream toServerlocal;
+    private DataInputStream fromServerlocal;
+    private DataOutputStream toServervisitante;
+    private DataInputStream fromServervisitante;
 
     JButton INICIO = new JButton("VOLVER INICIO");
 
@@ -46,6 +56,7 @@ public class Panel_Partida extends JPanel implements MouseListener {
         INICIO.setForeground(new java.awt.Color(255, 255, 255));
         INICIO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         INICIO.setContentAreaFilled(false);
+        this.online = false;
         this.jugador01 = jugador;
         this.jugador02 = null;
         this.maquina = maquina;
@@ -64,6 +75,7 @@ public class Panel_Partida extends JPanel implements MouseListener {
     }
 
     public Panel_Partida(Jugador jugador01, Jugador jugador02) {
+        this.online = false;
         this.jugador01 = jugador01;
         this.jugador02 = jugador02;
         this.maquina = null;
@@ -78,6 +90,40 @@ public class Panel_Partida extends JPanel implements MouseListener {
         this.yref1 = jugador01.getTablero().getUbicacionPanel().getY();
         this.xref2 = jugador02.getTablero().getUbicacionPanel().getX();
         this.yref2 = jugador02.getTablero().getUbicacionPanel().getY();
+        addMouseListener(this);
+    }
+
+    public Panel_Partida(Jugador jugador01, boolean local, DataInputStream input, DataOutputStream output) {
+        this.online = true;
+        if (local) {
+            fromServerlocal = input;
+            toServerlocal = output;
+            this.jugador01 = jugador01;
+            this.jugador02 = null;
+            this.maquina = null;
+            this.turno = true;
+            this.estado = true;
+            this.modo = false;
+            this.tam_cuadrado = jugador01.getTablero().getTamanoCuadrados();
+            this.c1 = jugador01.getTablero().getUbicacionPanel();
+            this.xref1 = jugador01.getTablero().getUbicacionPanel().getX();
+            this.yref1 = jugador01.getTablero().getUbicacionPanel().getY();
+
+        } else {
+            fromServervisitante = input;
+            toServervisitante = output;
+            this.jugador01 = null;
+            this.jugador02 = jugador02;
+            this.maquina = null;
+            this.turno = false;
+            this.estado = true;
+            this.modo = false;
+            this.tam_cuadrado = jugador01.getTablero().getTamanoCuadrados();
+
+            this.c2 = jugador02.getTablero().getUbicacionPanel();
+            this.xref2 = jugador02.getTablero().getUbicacionPanel().getX();
+            this.yref2 = jugador02.getTablero().getUbicacionPanel().getY();
+        }
         addMouseListener(this);
     }
 
@@ -290,39 +336,37 @@ public class Panel_Partida extends JPanel implements MouseListener {
             if (modo) {
                 //this.Recorrer(jugador01.getTablero());
                 p = e.getPoint();
-                if (golpeValido(p, maquina.getTablero())) {
-                    lugar_golpe = golpe(p, maquina.getTablero());
-                    this.setCuadroGolpeado(p, "Maquina");
-                    this.actualizarEstadoJuego();
-                    repaint();
-                }
-                //listo//Aqui usamos la informacion para detectar donde pulso el jugador
-                //listo//Pintamos o modificamos donde el usuario jugo
-                //Listo//Modificamos el golpeado del cuadrado CAMILO
-                //Las vidas de los barcos, para saber si ya se acabo el juego o no CAMILO
+                //if (online) {
 
-                //Hacemos que la maquina juegue
-                //Coordenada dada por la maquina       
-                //listo    //Pintamos o modificamos donde la maquina jugo
-                //Modificamos el golpeado del cuadrado
-                //Las vidas de los barcos, para saber si ya se acabo el juego o no
+              //  } else {
+                    if (golpeValido(p, maquina.getTablero())) {
+                        lugar_golpe = golpe(p, maquina.getTablero());
+                        this.setCuadroGolpeado(p, "Maquina");
+                        this.actualizarEstadoJuego();
+                        repaint();
+                    }
+              //  }
             }//If modo
             else {
                 if (turno) {
                     p = e.getPoint();
-                    if (golpeValido(p, jugador02.getTablero())) {
-                        lugar_golpe = golpe(p, jugador02.getTablero());
-                        this.setCuadroGolpeado(p, "Jugador02");
-                        this.actualizarEstadoJuego();
-                        this.turno = false;
-                        repaint();
+                  //  if (this.online) {
+//                        try {
+//                            this.toServerlocal.writeInt(p.x);
+//                            this.toServerlocal.flush();
+//                        } catch (IOException ex) {
+//
+//                        }
+//                    } else {
+                        if (golpeValido(p, jugador02.getTablero())) {
+                            lugar_golpe = golpe(p, jugador02.getTablero());
+                            this.setCuadroGolpeado(p, "Jugador02");
+                            this.actualizarEstadoJuego();
+                            this.turno = false;
+                            repaint();
+                    //    }
                     }
 
-                    //Aqui usamos la informacion para detectar donde pulso el jugador
-                    //Pintamos o modificamos donde el usuario jugo
-                    //Modificamos el golpeado del cuadrado
-                    //Las vidas de los barcos, para saber si ya se acabo el juego o no
-                    //Cambiamos turno
                 }//IF TURNO
                 else {
                     p = e.getPoint();
@@ -343,7 +387,7 @@ public class Panel_Partida extends JPanel implements MouseListener {
             }//ELSE MODO
         }//IF ESTADO
         else {
-            
+
             System.out.println("FIN DEL JUEGO CHAVAL");
         }//ELSE ESTADO
     }
