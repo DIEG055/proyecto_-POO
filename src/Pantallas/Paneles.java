@@ -23,6 +23,7 @@ import programa.Coordenada;
 import programa.Tablero;
 import programa.Maquina;
 import programa.Jugador;
+import programa.musica1;
 
 /**
  *
@@ -52,6 +53,9 @@ public class Paneles extends JPanel implements ActionListener {
 
     public Paneles() {
         super(new BorderLayout());
+        String m="Feel Good Inc. [8 Bit Tribute to Gorillaz] - 8 Bit Universe (online-audio-converter.com).wav";
+        musica1 fondo=new musica1(m);
+        fondo.run();
         this.p1 = new Panel_Inicial();
         this.p2 = new Panel_Eleccion();
         this.p31 = new Panel_Ubi_Barcos_Jug2();
