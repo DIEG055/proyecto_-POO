@@ -6,6 +6,7 @@
 package Pantallas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -43,6 +44,7 @@ public class Paneles extends JPanel implements ActionListener {
     Tablero tablero_jugador2, tablero_jugador1, tablero_local;
     private Jugador jugador01, jugador02;
     private Maquina maquina;
+    Color color = new Color(128, 128, 0);
 //    private ServerSocket servidor;
 //    private Socket cliente;
 //    private DataOutputStream toServerlocal,toServervisitante;
@@ -137,30 +139,6 @@ public class Paneles extends JPanel implements ActionListener {
             add(p2);
             this.online = false;
         }
-//        if (e.getSource().equals(p5.LOCAL)) {
-//            remove(p5);
-//            add(p32);
-//            try {
-//                this.servidor = new ServerSocket(8000);
-//                this.cliente = this.servidor.accept();
-//                fromServerlocal = new DataInputStream(cliente.getInputStream());
-//                toServerlocal = new DataOutputStream(cliente.getOutputStream());
-//            } catch (IOException ex) {
-//                System.out.println("error en el servidor");
-//            }
-        //     }
-//        if (e.getSource().equals(p5.INVITADO)) {
-//            remove(p5);
-//            add(p31);
-        //  String direccion = JOptionPane.showInputDialog(null, "ingrese la direccion IP");
-//            try {
-//                this.cliente = new Socket("LocalHost", 8000);
-//                fromServervisitante = new DataInputStream(cliente.getInputStream());
-//                toServervisitante = new DataOutputStream(cliente.getOutputStream());
-//            } catch (IOException ex) {
-//                System.out.println("Problemas en la conexion");
-//            }
-        //    }
         if (e.getSource().equals(p2.VSLOCAL)) {
             remove(p2);
             add(p32);
@@ -175,14 +153,7 @@ public class Paneles extends JPanel implements ActionListener {
                 remove(p32);
                 add(p31);
             }
-//            } else {
-//                if (p32.tablero1.getBarcos_creados() == 5) {
-//                    remove(p32);
-//                    this.jugador01 = new Jugador("jugador 1", this.tablero_jugador1);
-//                    p4 = new Panel_Partida(this.jugador01, false,this.fromServerlocal,this.toServerlocal);
-//                    add(p4);
-//                }
-//            }
+
         }
         if (e.getSource().equals(p31.CONTINUAR)) {
             //  if (!online) {
@@ -193,14 +164,6 @@ public class Paneles extends JPanel implements ActionListener {
                 p4 = new Panel_Partida(this.jugador01, this.jugador02);
                 add(p4);
             }
-//            } else {
-//                if (p31.tablero1.getBarcos_creados() == 5) {
-//                    remove(p31);
-//                    this.jugador02 = new Jugador("jugador 2", this.tablero_jugador2);
-//                    p4 = new Panel_Partida(this.jugador02, false,this.fromServervisitante,this.toServervisitante);
-//                    add(p4);
-//                }
-//            }
         }
         if (e.getSource().equals(p2.VSCOM)) {
             remove(p2);
@@ -236,6 +199,7 @@ public class Paneles extends JPanel implements ActionListener {
         revalidate();
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Image fondo = loadImage("panel_online.png");

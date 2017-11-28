@@ -178,7 +178,7 @@ public class Panel_Ubi_barcos_vsPc extends JPanel implements MouseListener {
 
     private void pinta_provicional(Graphics g) {
         Graphics2D c = (Graphics2D) g;
-        c.setColor(Color.LIGHT_GRAY);
+        c.setColor(new Color(32,178,170));
         if (!(this.x_aux == 0) && prueba) {
             try {
                 for (int i = 0; i < this.t[tam]; i++) {

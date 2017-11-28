@@ -130,10 +130,10 @@ public class Panel_Partida extends JPanel implements MouseListener {
                     if (maquina.getTablero().getCuadrados()[i][j].isGolpeado()) {
                         Coordenada aux = maquina.getTablero().getCuadrados()[i][j].getCoordenada();
                         if (maquina.getTablero().getCuadrados()[i][j].isPer_barco()) {
-                            c.setColor(Color.LIGHT_GRAY);
+                            c.setColor(new Color(0,128,128));
                             c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
                         } else {
-                            c.setColor(Color.CYAN);
+                            c.setColor(new Color(0,206,209));
                             c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
                         }
 
@@ -142,9 +142,9 @@ public class Panel_Partida extends JPanel implements MouseListener {
                     if (jugador02.getTablero().getCuadrados()[i][j].isGolpeado()) {
                         Coordenada aux = jugador02.getTablero().getCuadrados()[i][j].getCoordenada();
                         if (jugador02.getTablero().getCuadrados()[i][j].isPer_barco()) {
-                            c.setColor(Color.BLUE);
+                            c.setColor(new Color(0,128,128));
                         } else {
-                            c.setColor(Color.CYAN);
+                            c.setColor(new Color(0,206,209));
                         }
                         c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
                     }
@@ -152,9 +152,9 @@ public class Panel_Partida extends JPanel implements MouseListener {
                 if (jugador01.getTablero().getCuadrados()[i][j].isGolpeado()) {
                     Coordenada aux = jugador01.getTablero().getCuadrados()[i][j].getCoordenada();
                     if (jugador01.getTablero().getCuadrados()[i][j].isPer_barco()) {
-                        c.setColor(Color.BLUE);
+                        c.setColor(new Color(0,128,128));
                     } else {
-                        c.setColor(Color.CYAN);
+                        c.setColor(new Color(0,206,209));
                     }
                     c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
 
