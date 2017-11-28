@@ -184,6 +184,15 @@ public class Tablero {
             }
         }
     }
+    
 
     //public boolean isVivo(){}
+
+    public Barco[] getBarcos() {
+        return barcos;
+    }
+
+    public void setBarcos(Barco[] barcos) {
+        this.barcos = barcos;
+    }
 }

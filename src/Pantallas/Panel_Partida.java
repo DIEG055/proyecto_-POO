@@ -342,7 +342,7 @@ public class Panel_Partida extends JPanel implements MouseListener {
                         repaint();
                     }
                     
-                    Coordenada aux = maquina.ataque();
+                    Coordenada aux = maquina.ataqueMaquina02(jugador01.getTablero());
                     int pointX= (aux.getX() * this.tam_cuadrado) + this.jugador01.getTablero().getUbicacionPanel().getX();
                     int pointY= (aux.getY() * this.tam_cuadrado) + this.jugador01.getTablero().getUbicacionPanel().getY();
                     Point golpeMaquina = new Point(pointX, pointY);
