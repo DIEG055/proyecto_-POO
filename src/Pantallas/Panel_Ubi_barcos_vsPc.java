@@ -41,7 +41,6 @@ public class Panel_Ubi_barcos_vsPc extends JPanel implements MouseListener {
     JRadioButton horizontal;
     ButtonGroup grupo1;
 
-
     public Panel_Ubi_barcos_vsPc() {
         this.xref = 30;
         this.yref = 100;
@@ -178,7 +177,7 @@ public class Panel_Ubi_barcos_vsPc extends JPanel implements MouseListener {
 
     private void pinta_provicional(Graphics g) {
         Graphics2D c = (Graphics2D) g;
-        c.setColor(new Color(32,178,170));
+        c.setColor(new Color(32, 178, 170));
         if (!(this.x_aux == 0) && prueba) {
             try {
                 for (int i = 0; i < this.t[tam]; i++) {
@@ -224,11 +223,20 @@ public class Panel_Ubi_barcos_vsPc extends JPanel implements MouseListener {
 
     }
 
+    public boolean se_puede(int x, int y) {
+        boolean ac = false;
+        if (x >= this.xref && x <= this.xref * 10 && x >= this.xref && x <= this.xref * 10) {
+            ac= true;
+        }
+        return ac;
+    }
+
     @Override
     public void mouseReleased(MouseEvent e) {
         Coordenada aux = cabeza(e.getPoint());
         this.eleccion_orientacion();
         if (tablero1.crear_barcovf(e.getPoint(), orientacion, t[this.tam])) {
+
             this.x_aux = aux.getX();
             this.y_aux = aux.getY();
             this.prueba = true;
@@ -252,7 +260,8 @@ public class Panel_Ubi_barcos_vsPc extends JPanel implements MouseListener {
 
     public void poner() {
         Point c = new Point(x_aux, y_aux);
-        if (tam < 5) {
+        if (tam < 5 && se_puede(x_aux, y_aux)) {
+
             tablero1.crear_barco(c, orientacion, t[this.tam]);
             tam++;
         }

@@ -41,7 +41,6 @@ public class Panel_Ubi_Barcos_Jug2 extends JPanel implements MouseListener {
     JRadioButton horizontal;
     ButtonGroup grupo1;
 
-
     public Panel_Ubi_Barcos_Jug2() {
         this.xref = 380;
         this.yref = 100;
@@ -223,6 +222,14 @@ public class Panel_Ubi_Barcos_Jug2 extends JPanel implements MouseListener {
 
     }
 
+    public boolean se_puede(int x, int y) {
+        boolean ac = false;
+        if (x >= this.xref && x <= this.xref * 10 && x >= this.xref && x <= this.xref * 10) {
+            ac = true;
+        }
+        return ac;
+    }
+
     @Override
     public void mouseReleased(MouseEvent e) {
         Coordenada aux = cabeza(e.getPoint());
@@ -251,7 +258,7 @@ public class Panel_Ubi_Barcos_Jug2 extends JPanel implements MouseListener {
 
     public void poner() {
         Point c = new Point(x_aux, y_aux);
-        if (tam < 5) {
+        if (tam < 5 && se_puede(x_aux, y_aux)) {
             tablero1.crear_barco(c, orientacion, t[this.tam]);
             tam++;
         }

@@ -247,9 +247,17 @@ public class Panel_Ubi_Barcos_Jug1 extends JPanel implements MouseListener {
         this.puesto = puesto;
     }
 
+    public boolean se_puede(int x, int y) {
+        boolean ac = false;
+        if (x >= this.xref && x <= this.xref * 10 && x >= this.xref && x <= this.xref * 10) {
+            ac = true;
+        }
+        return ac;
+    }
+
     public void poner() {
         Point c = new Point(x_aux, y_aux);
-        if (tam < 5) {
+        if (tam < 5 && se_puede(x_aux, y_aux)) {
             tablero1.crear_barco(c, orientacion, t[this.tam]);
             tam++;
         }
