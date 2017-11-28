@@ -130,10 +130,8 @@ public class Panel_Partida extends JPanel implements MouseListener {
                     if (maquina.getTablero().getCuadrados()[i][j].isGolpeado()) {
                         Coordenada aux = maquina.getTablero().getCuadrados()[i][j].getCoordenada();
                         if (maquina.getTablero().getCuadrados()[i][j].isPer_barco()) {
-                            c.setColor(Color.BLUE);
+                            c.setColor(Color.LIGHT_GRAY);
                             c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
-                            c.setColor(Color.ORANGE);
-                            c.drawRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
                         } else {
                             c.setColor(Color.CYAN);
                             c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
