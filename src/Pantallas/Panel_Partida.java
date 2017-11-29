@@ -34,17 +34,43 @@ import programa.musica1;
  */
 public class Panel_Partida extends JPanel implements MouseListener {
 
-    private Jugador jugador01,jugador02;
+    private Jugador jugador01, jugador02;
     private Maquina maquina;
-    private boolean turno,estado,modo,online; 
+    private boolean turno, estado, modo, online, efecto;
     int xref1, xref2, yref1, yref2, tam_cuadrado;
     private Coordenada c1, c2;
-    private DataOutputStream toServerlocal,toServervisitante;
-    private DataInputStream fromServerlocal,fromServervisitante;
+    private DataOutputStream toServerlocal, toServervisitante;
+    private DataInputStream fromServerlocal, fromServervisitante;
     JButton INICIO;
+    Color color;
 
-    public Panel_Partida(Jugador jugador, Maquina maquina) {
-//        this.add(this.INICIO);
+    public Panel_Partida(Jugador jugador, Maquina maquina, boolean efecto, Color color) {
+        this.INICIO = new JButton();
+        this.add(this.INICIO);
+        INICIO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        INICIO.setForeground(new java.awt.Color(255, 255, 255));
+        INICIO.setText("VOLVER A INICIO");
+        INICIO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        INICIO.setContentAreaFilled(false);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(267, 267, 267)
+                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(292, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(405, Short.MAX_VALUE))
+        );
+        this.color=color;
+        this.efecto = efecto;
         this.online = false;
         this.jugador01 = jugador;
         this.jugador02 = null;
@@ -63,7 +89,37 @@ public class Panel_Partida extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
-    public Panel_Partida(Jugador jugador01, Jugador jugador02) {
+    public Panel_Partida() {
+        this.INICIO = new JButton();
+        this.add(this.INICIO);
+    }
+
+    public Panel_Partida(Jugador jugador01, Jugador jugador02, boolean efecto, Color color) {
+        this.INICIO = new JButton();
+        this.add(this.INICIO);
+        INICIO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        INICIO.setForeground(new java.awt.Color(255, 255, 255));
+        INICIO.setText("VOLVER A INICIO");
+        INICIO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        INICIO.setContentAreaFilled(false);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(267, 267, 267)
+                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(292, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(405, Short.MAX_VALUE))
+        );
+        this.color = color;
         this.online = false;
         this.jugador01 = jugador01;
         this.jugador02 = jugador02;
@@ -132,13 +188,11 @@ public class Panel_Partida extends JPanel implements MouseListener {
                     if (maquina.getTablero().getCuadrados()[i][j].isGolpeado()) {
                         Coordenada aux = maquina.getTablero().getCuadrados()[i][j].getCoordenada();
                         if (maquina.getTablero().getCuadrados()[i][j].isPer_barco()) {
-                            c.setColor(new Color(0,128,128));
+
+                            c.setColor(this.color);
                             c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
-                            String m="Torpedo Impact-SoundBible.com-765913562.wav";
-                            musica1 fondo=new musica1(m);
-                            fondo.run();
                         } else {
-                            c.setColor(new Color(0,206,209));
+                            c.setColor(new Color(0, 206, 209));
                             c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
                         }
 
@@ -147,12 +201,11 @@ public class Panel_Partida extends JPanel implements MouseListener {
                     if (jugador02.getTablero().getCuadrados()[i][j].isGolpeado()) {
                         Coordenada aux = jugador02.getTablero().getCuadrados()[i][j].getCoordenada();
                         if (jugador02.getTablero().getCuadrados()[i][j].isPer_barco()) {
-                            c.setColor(new Color(0,128,128));
-                            String m="Torpedo Impact-SoundBible.com-765913562.wav";
-                            musica1 fondo=new musica1(m);
-                            fondo.run();
+
+                            c.setColor(this.color);
                         } else {
-                            c.setColor(new Color(0,206,209));
+
+                            c.setColor(new Color(0, 206, 209));
                         }
                         c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
                     }
@@ -160,16 +213,16 @@ public class Panel_Partida extends JPanel implements MouseListener {
                 if (jugador01.getTablero().getCuadrados()[i][j].isGolpeado()) {
                     Coordenada aux = jugador01.getTablero().getCuadrados()[i][j].getCoordenada();
                     if (jugador01.getTablero().getCuadrados()[i][j].isPer_barco()) {
-                        c.setColor(new Color(0,128,128));
-                        String m="Torpedo Impact-SoundBible.com-765913562.wav";
-                            musica1 fondo=new musica1(m);
-                            fondo.run();
+
+                        c.setColor(this.color);
                     } else {
-                        c.setColor(new Color(0,206,209));
+
+                        c.setColor(new Color(0, 206, 209));
                     }
                     c.fillRect(aux.getX(), aux.getY(), this.tam_cuadrado, this.tam_cuadrado);
 
                 }
+
             }
         }
     }
@@ -181,7 +234,7 @@ public class Panel_Partida extends JPanel implements MouseListener {
         c.setColor(Color.WHITE);
         c.drawString("BARCOS CON VIDA JUGADOR 1: " + this.jugador01.getTablero().getBarcosVivos(), this.xref1, this.yref1 - 10);
         if (modo) {
-            c.drawString("BARCOS CON VIDA MAQUINA " + this.maquina.getTablero().getBarcosVivos(), this.xref1+350, this.yref1 - 10);
+            c.drawString("BARCOS CON VIDA MAQUINA " + this.maquina.getTablero().getBarcosVivos(), this.xref1 + 350, this.yref1 - 10);
         } else {
             c.drawString("BARCOS CON VIDA JUGADOR 2: " + this.jugador01.getTablero().getBarcosVivos(), this.xref2, this.yref2 - 10);
         }
@@ -334,28 +387,28 @@ public class Panel_Partida extends JPanel implements MouseListener {
                 p = e.getPoint();
                 //if (online) {
 
-              //  } else {
-                    if (golpeValido(p, maquina.getTablero())) {
-                        lugar_golpe = golpe(p, maquina.getTablero());
-                        this.setCuadroGolpeado(p, "Maquina");
-                        this.actualizarEstadoJuego();
-                        repaint();
-                    }
-                    
-                    Coordenada aux = maquina.ataqueMaquina02(jugador01.getTablero());
-                    int pointX= (aux.getX() * this.tam_cuadrado) + this.jugador01.getTablero().getUbicacionPanel().getX();
-                    int pointY= (aux.getY() * this.tam_cuadrado) + this.jugador01.getTablero().getUbicacionPanel().getY();
-                    Point golpeMaquina = new Point(pointX, pointY);
-                    this.setCuadroGolpeado(golpeMaquina, "Jugador01");
+                //  } else {
+                if (golpeValido(p, maquina.getTablero())) {
+                    lugar_golpe = golpe(p, maquina.getTablero());
+                    this.setCuadroGolpeado(p, "Maquina");
                     this.actualizarEstadoJuego();
                     repaint();
-                    
-              //  }
+                }
+
+                Coordenada aux = maquina.ataqueMaquina02(jugador01.getTablero());
+                int pointX = (aux.getX() * this.tam_cuadrado) + this.jugador01.getTablero().getUbicacionPanel().getX();
+                int pointY = (aux.getY() * this.tam_cuadrado) + this.jugador01.getTablero().getUbicacionPanel().getY();
+                Point golpeMaquina = new Point(pointX, pointY);
+                this.setCuadroGolpeado(golpeMaquina, "Jugador01");
+                this.actualizarEstadoJuego();
+                repaint();
+
+                //  }
             }//If modo
             else {
                 if (turno) {
                     p = e.getPoint();
-                  //  if (this.online) {
+                    //  if (this.online) {
 //                        try {
 //                            this.toServerlocal.writeInt(p.x);
 //                            this.toServerlocal.flush();
@@ -363,13 +416,13 @@ public class Panel_Partida extends JPanel implements MouseListener {
 //
 //                        }
 //                    } else {
-                        if (golpeValido(p, jugador02.getTablero())) {
-                            lugar_golpe = golpe(p, jugador02.getTablero());
-                            this.setCuadroGolpeado(p, "Jugador02");
-                            this.actualizarEstadoJuego();
-                            this.turno = false;
-                            repaint();
-                    //    }
+                    if (golpeValido(p, jugador02.getTablero())) {
+                        lugar_golpe = golpe(p, jugador02.getTablero());
+                        this.setCuadroGolpeado(p, "Jugador02");
+                        this.actualizarEstadoJuego();
+                        this.turno = false;
+                        repaint();
+                        //    }
                     }
 
                 }//IF TURNO
