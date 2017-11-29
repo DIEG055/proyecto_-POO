@@ -22,14 +22,29 @@ public class Panel_Inicial extends JPanel {
     JButton informacion = new JButton();
 
     public Panel_Inicial() {
-
         this.iniciar = new JButton();
         this.configuracion = new JButton();
         this.informacion = new JButton();
         this.add(this.iniciar);
         this.add(this.configuracion);
         this.add(this.informacion);
+        cargar_componentes();
+    }
 
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Image fondo = loadImage("src\\imagenes_fondos\\pantalla_inicio.png");
+        g.drawImage(fondo, 0, 0, null);
+    }
+
+    public Image loadImage(String imageName) {
+        ImageIcon ii = new ImageIcon(imageName);
+        Image image = ii.getImage();
+        return image;
+    }
+
+    public void cargar_componentes() {
         informacion.setBorderPainted(false);
         informacion.setContentAreaFilled(false);
 
@@ -72,18 +87,5 @@ public class Panel_Inicial extends JPanel {
                                         .addComponent(configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(19, 19, 19)))
         );
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Image fondo = loadImage("src\\imagenes_fondos\\pantalla_inicio.png");
-        g.drawImage(fondo, 0, 0, null);
-    }
-
-    public Image loadImage(String imageName) {
-        ImageIcon ii = new ImageIcon(imageName);
-        Image image = ii.getImage();
-        return image;
     }
 }

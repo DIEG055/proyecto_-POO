@@ -27,12 +27,26 @@ public class Panel_Eleccion extends JPanel {
         this.VSLOCAL = new JButton("PARTIDA LOCAL");
         this.ONLINE = new JButton("PARTIDA ONLINE");
         this.REGRESAR = new JButton("REGRESAR");
-
         this.add(this.VSCOM);
         this.add(this.REGRESAR);
         this.add(this.VSLOCAL);
         this.add(this.ONLINE);
-        VSCOM.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        agregar_componentes();
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Image fondo = loadImage("src\\imagenes_fondos\\eleccion_partida.png");
+        g.drawImage(fondo, 0, 0, null);
+    }
+
+    public Image loadImage(String imageName) {
+        ImageIcon ii = new ImageIcon(imageName);
+        Image image = ii.getImage();
+        return image;
+    }
+    public void agregar_componentes(){
+     VSCOM.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         VSCOM.setForeground(new java.awt.Color(255, 255, 255));
         VSCOM.setText("VSCOM");
         VSCOM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -88,17 +102,5 @@ public class Panel_Eleccion extends JPanel {
                                 .addGap(65, 65, 65))
         );
 
-    }
-
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Image fondo = loadImage("src\\imagenes_fondos\\eleccion_partida.png");
-        g.drawImage(fondo, 0, 0, null);
-    }
-
-    public Image loadImage(String imageName) {
-        ImageIcon ii = new ImageIcon(imageName);
-        Image image = ii.getImage();
-        return image;
     }
 }

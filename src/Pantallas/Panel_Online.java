@@ -22,14 +22,28 @@ public class Panel_Online extends JPanel {
     JButton INVITADO;
 
     public Panel_Online() {
-
         this.INVITADO = new JButton();
         this.LOCAL = new JButton();
         this.REGRESAR = new JButton();
         this.add(this.INVITADO);
         this.add(this.LOCAL);
         this.add(this.REGRESAR);
-        LOCAL.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        agregar_componentes();
+    }
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Image fondo = loadImage("src\\imagenes_fondos\\proximamente.jpg");
+        g.drawImage(fondo, 0, 0, null);
+    }
+
+    public Image loadImage(String imageName) {
+        ImageIcon ii = new ImageIcon(imageName);
+        Image image = ii.getImage();
+        return image;
+    }
+    public void agregar_componentes(){
+    LOCAL.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         LOCAL.setForeground(new java.awt.Color(255, 255, 255));
         LOCAL.setText("LOCAL");
         LOCAL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -78,17 +92,5 @@ public class Panel_Online extends JPanel {
                                         .addContainerGap(402, Short.MAX_VALUE)))
         );
 
-    }
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Image fondo = loadImage("src\\imagenes_fondos\\proximamente.jpg");
-        g.drawImage(fondo, 0, 0, null);
-    }
-
-    public Image loadImage(String imageName) {
-        ImageIcon ii = new ImageIcon(imageName);
-        Image image = ii.getImage();
-        return image;
     }
 }

@@ -21,7 +21,23 @@ public class Panel_Informacion extends JPanel {
 
     public Panel_Informacion() {
         this.regresar= new JButton();
-        regresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        agregar_componentes();
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Image fondo = loadImage("src\\imagenes_fondos\\informaciond.jpg");
+        g.drawImage(fondo, 0, 0, null);
+    }
+
+    public Image loadImage(String imageName) {
+        ImageIcon ii = new ImageIcon(imageName);
+        Image image = ii.getImage();
+        return image;
+    }
+    public void agregar_componentes(){
+    regresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         regresar.setForeground(new java.awt.Color(255, 255, 255));
         regresar.setText("REGRESAR");
         regresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -43,18 +59,5 @@ public class Panel_Informacion extends JPanel {
                                 .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(438, Short.MAX_VALUE))
         );
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Image fondo = loadImage("src\\imagenes_fondos\\informaciond.jpg");
-        g.drawImage(fondo, 0, 0, null);
-    }
-
-    public Image loadImage(String imageName) {
-        ImageIcon ii = new ImageIcon(imageName);
-        Image image = ii.getImage();
-        return image;
     }
 }

@@ -47,28 +47,7 @@ public class Panel_Partida extends JPanel implements MouseListener {
     public Panel_Partida(Jugador jugador, Maquina maquina, boolean efecto, Color color) {
         this.INICIO = new JButton();
         this.add(this.INICIO);
-        INICIO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        INICIO.setForeground(new java.awt.Color(255, 255, 255));
-        INICIO.setText("VOLVER A INICIO");
-        INICIO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        INICIO.setContentAreaFilled(false);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(267, 267, 267)
-                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(292, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(405, Short.MAX_VALUE))
-        );
+        
         this.color=color;
         this.efecto = efecto;
         this.online = false;
@@ -79,13 +58,13 @@ public class Panel_Partida extends JPanel implements MouseListener {
         this.estado = true;
         this.modo = true;
         this.tam_cuadrado = jugador.getTablero().getTamanoCuadrados();
-
         this.c1 = jugador.getTablero().getUbicacionPanel();
         this.c2 = maquina.getTablero().getUbicacionPanel();
         this.xref1 = jugador.getTablero().getUbicacionPanel().getX();
         this.yref1 = jugador.getTablero().getUbicacionPanel().getY();
         this.xref2 = maquina.getTablero().getUbicacionPanel().getX();
         this.yref2 = maquina.getTablero().getUbicacionPanel().getY();
+        cargar_componentes();
         addMouseListener(this);
     }
 
@@ -97,28 +76,6 @@ public class Panel_Partida extends JPanel implements MouseListener {
     public Panel_Partida(Jugador jugador01, Jugador jugador02, boolean efecto, Color color) {
         this.INICIO = new JButton();
         this.add(this.INICIO);
-        INICIO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        INICIO.setForeground(new java.awt.Color(255, 255, 255));
-        INICIO.setText("VOLVER A INICIO");
-        INICIO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        INICIO.setContentAreaFilled(false);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(267, 267, 267)
-                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(292, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(405, Short.MAX_VALUE))
-        );
         this.color = color;
         this.online = false;
         this.jugador01 = jugador01;
@@ -128,49 +85,17 @@ public class Panel_Partida extends JPanel implements MouseListener {
         this.estado = true;
         this.modo = false;
         this.tam_cuadrado = jugador01.getTablero().getTamanoCuadrados();
-
         this.c1 = jugador01.getTablero().getUbicacionPanel();
         this.c2 = jugador02.getTablero().getUbicacionPanel();
         this.xref1 = jugador01.getTablero().getUbicacionPanel().getX();
         this.yref1 = jugador01.getTablero().getUbicacionPanel().getY();
         this.xref2 = jugador02.getTablero().getUbicacionPanel().getX();
         this.yref2 = jugador02.getTablero().getUbicacionPanel().getY();
+        cargar_componentes();
         addMouseListener(this);
     }
 
-    public Panel_Partida(Jugador jugador01, boolean local, DataInputStream input, DataOutputStream output) {
-        this.online = true;
-        if (local) {
-            fromServerlocal = input;
-            toServerlocal = output;
-            this.jugador01 = jugador01;
-            this.jugador02 = null;
-            this.maquina = null;
-            this.turno = true;
-            this.estado = true;
-            this.modo = false;
-            this.tam_cuadrado = jugador01.getTablero().getTamanoCuadrados();
-            this.c1 = jugador01.getTablero().getUbicacionPanel();
-            this.xref1 = jugador01.getTablero().getUbicacionPanel().getX();
-            this.yref1 = jugador01.getTablero().getUbicacionPanel().getY();
-
-        } else {
-            fromServervisitante = input;
-            toServervisitante = output;
-            this.jugador01 = null;
-            this.jugador02 = jugador02;
-            this.maquina = null;
-            this.turno = false;
-            this.estado = true;
-            this.modo = false;
-            this.tam_cuadrado = jugador01.getTablero().getTamanoCuadrados();
-
-            this.c2 = jugador02.getTablero().getUbicacionPanel();
-            this.xref2 = jugador02.getTablero().getUbicacionPanel().getX();
-            this.yref2 = jugador02.getTablero().getUbicacionPanel().getY();
-        }
-        addMouseListener(this);
-    }
+    
 
     @Override
     public void paintComponent(Graphics g) {
@@ -468,5 +393,29 @@ public class Panel_Partida extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+    public void cargar_componentes(){
+    INICIO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        INICIO.setForeground(new java.awt.Color(255, 255, 255));
+        INICIO.setText("VOLVER A INICIO");
+        INICIO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        INICIO.setContentAreaFilled(false);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(267, 267, 267)
+                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(292, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(INICIO, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(405, Short.MAX_VALUE))
+        );
     }
 }

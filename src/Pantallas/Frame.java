@@ -21,7 +21,7 @@ public class Frame extends JFrame {
     private void initUI() {
         add(new Paneles());
         setSize(730, 478);
-        setTitle("pantalla1");
+        setTitle("BATALLA NAVAL");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

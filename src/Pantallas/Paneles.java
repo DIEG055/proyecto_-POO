@@ -5,7 +5,6 @@
  */
 package Pantallas;
 
-import com.sun.corba.se.spi.activation.Server;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,8 +16,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import programa.Coordenada;
 import programa.Tablero;
@@ -35,28 +32,21 @@ public class Paneles extends JPanel implements ActionListener {
     private int xref1 = 30;
     private int yref1 = 100;
     private int tam_cuadrado = 30;
-    private boolean online;
-    private boolean local;
-    private boolean efecto, sonido;
-
-    Panel_Inicial p1 = new Panel_Inicial();
-    Panel_Eleccion p2 = new Panel_Eleccion();
-    Panel_Ubi_Barcos_Jug2 p31 = new Panel_Ubi_Barcos_Jug2();
-    Panel_Ubi_Barcos_Jug1 p32 = new Panel_Ubi_Barcos_Jug1();
-    Panel_Ubi_barcos_vsPc p3 = new Panel_Ubi_barcos_vsPc();
+    private boolean efecto, sonido,online,local;
+    Panel_Inicial p1;
+    Panel_Eleccion p2;
+    Panel_Ubi_Barcos_Jug2 p31;
+    Panel_Ubi_Barcos_Jug1 p32;
+    Panel_Ubi_barcos_vsPc p3;
     Panel_Partida p4;
-    Panel_Online p5 = new Panel_Online();
-    Panel_Informacion pi = new Panel_Informacion();
-    panel_Configuracion pc = new panel_Configuracion();
-    Tablero tablero_local = p3.tablero1;
-    Tablero tablero_jugador1 = p32.tablero1;
-    Tablero tablero_jugador2 = p31.tablero1;
-    private Jugador jugador01;
-    private Jugador jugador02;
+    Panel_Online p5;
+    Panel_Informacion pi;
+    panel_Configuracion pc;
+    Tablero tablero_jugador2, tablero_jugador1, tablero_local;
+    private Jugador jugador02, jugador01;
     private Maquina maquina;
-    private int tipo_juego;
+    private int tipo_juego, c;
     private String[] colores;
-    private int c;
     private Color[] color;
     private musica1 fondo;
 //    private ServerSocket servidor;
@@ -68,7 +58,17 @@ public class Paneles extends JPanel implements ActionListener {
         super(new BorderLayout());
         musica1 fondo = new musica1("Feel Good Inc. [8 Bit Tribute to Gorillaz] - 8 Bit Universe (online-audio-converter.com).wav");
         fondo.run();
-
+        this.p1 = new Panel_Inicial();
+        this.p2 = new Panel_Eleccion();
+        this.p3 = new Panel_Ubi_barcos_vsPc();
+        this.p31 = new Panel_Ubi_Barcos_Jug2();
+        this.p32 = new Panel_Ubi_Barcos_Jug1();
+        this.p5 = new Panel_Online();
+        this.pi = new Panel_Informacion();
+        this.pc = new panel_Configuracion();
+        this.tablero_local = p3.tablero1;
+        this.tablero_jugador1 = p32.tablero1;
+        this.tablero_jugador2 = p31.tablero1;
         this.c = 0;
         this.colores = new String[]{"LIGHTGRAY", "GREEN", "ORANGE", "RED", "YELLOW"};
         this.color = new Color[]{new Color(192, 192, 192), new Color(0, 204, 0), new Color(255, 128, 0), new Color(204, 0, 0), new Color(255, 255, 0)};
@@ -94,13 +94,13 @@ public class Paneles extends JPanel implements ActionListener {
         p3.CONTINUAR.addActionListener(this);
 
         p31.CONTINUAR.addActionListener(this);
-
+        p31.REGRESAR.addActionListener(this);
         p31.poner.addActionListener(this);
         p31.horizontal.addActionListener(this);
         p31.vertical.addActionListener(this);
 
         p32.CONTINUAR.addActionListener(this);
-
+        p32.REGRESAR.addActionListener(this);
         p32.poner.addActionListener(this);
         p32.horizontal.addActionListener(this);
         p32.vertical.addActionListener(this);
@@ -135,7 +135,6 @@ public class Paneles extends JPanel implements ActionListener {
         if (e.getSource().equals(pc.efectosonido)) {
             if (pc.efectosonido.isSelected()) {
                 this.efecto = false;
-  
             }
         }
         if (e.getSource().equals(pc.sonidofondo)) {
@@ -210,6 +209,15 @@ public class Paneles extends JPanel implements ActionListener {
         if (e.getSource().equals(p31.poner)) {
             p31.poner();
         }
+        if (e.getSource().equals(p31.REGRESAR)) {
+            remove(p31);
+            add(p32);
+        }
+        if (e.getSource().equals(p32.REGRESAR)) {
+            remove(p32);
+            add(p2);
+        }
+
         if (e.getSource().equals(p3.CONTINUAR)) {
             if (p3.tablero1.getbarcos_creados() == 5) {
                 remove(p3);

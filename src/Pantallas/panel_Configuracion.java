@@ -28,11 +28,28 @@ public class panel_Configuracion extends JPanel {
         this.regresar = new JButton();
         this.sonidofondo = new JRadioButton();
         this.efectosonido = new JRadioButton();
-        this.eleccioncolor = new JComboBox(new String[]{"LIGHTGRAY","GREEN","ORANGE","RED", "YELLOW"});
+        this.eleccioncolor = new JComboBox(new String[]{"LIGHTGRAY", "GREEN", "ORANGE", "RED", "YELLOW"});
         this.add(this.regresar);
         this.add(this.sonidofondo);
         this.add(this.efectosonido);
         this.add(this.eleccioncolor);
+        agregar_componentes();
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Image fondo = loadImage("src\\imagenes_fondos\\configuracion.jpg");
+        g.drawImage(fondo, 0, 0, null);
+    }
+
+    public Image loadImage(String imageName) {
+        ImageIcon ii = new ImageIcon(imageName);
+        Image image = ii.getImage();
+        return image;
+    }
+
+    public void agregar_componentes() {
         regresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         regresar.setForeground(new java.awt.Color(255, 255, 255));
         regresar.setText("REGRESAR");
@@ -84,18 +101,5 @@ public class panel_Configuracion extends JPanel {
                                 .addComponent(eleccioncolor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(153, Short.MAX_VALUE))
         );
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Image fondo = loadImage("src\\imagenes_fondos\\configuracion.jpg");
-        g.drawImage(fondo, 0, 0, null);
-    }
-
-    public Image loadImage(String imageName) {
-        ImageIcon ii = new ImageIcon(imageName);
-        Image image = ii.getImage();
-        return image;
     }
 }
