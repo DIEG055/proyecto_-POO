@@ -19,28 +19,31 @@ public class musica1 implements Runnable {
     String f;
             InputStream in;
             AudioStream audio;
+            boolean parar;
     public musica1(String f) {
         this.f = f;
-               
+        this.parar=false;
+        try {       
+            this.in=new FileInputStream(f);
+            this.audio=new AudioStream(in);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(musica1.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(musica1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void setParar(boolean parar) {
+        this.parar = parar;
     }
 
     
     @Override
     public void run() {
-          try {
-               
-            InputStream in=new FileInputStream(f);
-            AudioStream audio= new AudioStream(in);
+        if(parar==true){
              AudioPlayer.player.start(audio);
-              } catch (FileNotFoundException ex) {
-            Logger.getLogger(musica1.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(musica1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-             
+        }else{} 
     }        
-    public void stop(){
-        AudioPlayer.player.resume();
-    }  
+
     
 }

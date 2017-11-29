@@ -58,6 +58,7 @@ public class Paneles extends JPanel implements ActionListener {
         super(new BorderLayout());
         musica1 fondo = new musica1("Feel Good Inc. [8 Bit Tribute to Gorillaz] - 8 Bit Universe (online-audio-converter.com).wav");
         fondo.run();
+        fondo.setParar(false);
         this.p1 = new Panel_Inicial();
         this.p2 = new Panel_Eleccion();
         this.p3 = new Panel_Ubi_barcos_vsPc();
