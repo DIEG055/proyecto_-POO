@@ -159,7 +159,7 @@ public class Panel_Partida extends JPanel implements MouseListener {
         if (modo) {
             c.drawString("BARCOS CON VIDA MAQUINA " + this.maquina.getTablero().getBarcosVivos(), this.xref1 + 350, this.yref1 - 10);
         } else {
-            c.drawString("BARCOS CON VIDA JUGADOR 2: " + this.jugador01.getTablero().getBarcosVivos(), this.xref2, this.yref2 - 10);
+            c.drawString("BARCOS CON VIDA JUGADOR 2: " + this.jugador02.getTablero().getBarcosVivos(), this.xref2, this.yref2 - 10);
         }
 
         if (estado) {
@@ -169,7 +169,7 @@ public class Panel_Partida extends JPanel implements MouseListener {
                 c.drawString("TURNO JUGADOR 2 ", 300, 430);
             }
         } else {
-            if (ganador()) {
+            if (!ganador()) {
                 c.drawString("HA GANADO JUGADOR 1 ", 300, 430);
             } else {
                 c.drawString("HA GANADO JUGADOR 2 ", 300, 430);
