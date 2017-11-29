@@ -47,8 +47,8 @@ public class Panel_Partida extends JPanel implements MouseListener {
     public Panel_Partida(Jugador jugador, Maquina maquina, boolean efecto, Color color) {
         this.INICIO = new JButton();
         this.add(this.INICIO);
-        
-        this.color=color;
+
+        this.color = color;
         this.efecto = efecto;
         this.online = false;
         this.jugador01 = jugador;
@@ -94,8 +94,6 @@ public class Panel_Partida extends JPanel implements MouseListener {
         cargar_componentes();
         addMouseListener(this);
     }
-
-    
 
     @Override
     public void paintComponent(Graphics g) {
@@ -164,10 +162,18 @@ public class Panel_Partida extends JPanel implements MouseListener {
             c.drawString("BARCOS CON VIDA JUGADOR 2: " + this.jugador01.getTablero().getBarcosVivos(), this.xref2, this.yref2 - 10);
         }
 
-        if (turno) {
-            c.drawString("TURNO JUGADOR 1 ", 300, 430);
+        if (estado) {
+            if (turno) {
+                c.drawString("TURNO JUGADOR 1 ", 300, 430);
+            } else {
+                c.drawString("TURNO JUGADOR 2 ", 300, 430);
+            }
         } else {
-            c.drawString("TURNO JUGADOR 2 ", 300, 430);
+            if (ganador()) {
+                c.drawString("HA GANADO JUGADOR 1 ", 300, 430);
+            } else {
+                c.drawString("HA GANADO JUGADOR 2 ", 300, 430);
+            }
         }
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -182,6 +188,14 @@ public class Panel_Partida extends JPanel implements MouseListener {
         ImageIcon ii = new ImageIcon(imageName);
         Image image = ii.getImage();
         return image;
+    }
+
+    public boolean ganador() {
+        boolean ac = true;
+        if (!(this.jugador01.getTablero().getBarcosVivos() == 0)) {
+            ac = false;
+        }
+        return ac;
     }
 
     public Coordenada golpe(Point p, Tablero tablero) {
@@ -394,8 +408,9 @@ public class Panel_Partida extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
-    public void cargar_componentes(){
-    INICIO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+    public void cargar_componentes() {
+        INICIO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         INICIO.setForeground(new java.awt.Color(255, 255, 255));
         INICIO.setText("VOLVER A INICIO");
         INICIO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
