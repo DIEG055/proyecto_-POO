@@ -22,7 +22,7 @@ public class musica1 implements Runnable {
             boolean parar;
     public musica1(String f) {
         this.f = f;
-        this.parar=false;
+        this.parar=true;
         try {       
             this.in=new FileInputStream(f);
             this.audio=new AudioStream(in);
@@ -33,17 +33,17 @@ public class musica1 implements Runnable {
         }
     }
 
-    public void setParar(boolean parar) {
-        this.parar = parar;
-    }
-
     
     @Override
     public void run() {
-        if(parar==true){
+        if(parar){
              AudioPlayer.player.start(audio);
-        }else{} 
+        }             
     }        
+
+    public void setParar(boolean parar) {
+        this.parar = parar;
+    }
 
     
 }
